@@ -14,7 +14,7 @@ pairs(meuse)
 
 pairs(~ cadmium + copper + lead , data = meuse)
 
-# Exercie: cadmium copper lead zinc
+
 
 pairs(meuse[,3:6])
 
@@ -26,7 +26,6 @@ pairs(meuse[,3:6], col="red", pch=19, cex=3)
 
 pairs(meuse[,3:6], col="red", pch=19, cex=3, main="Primo pairs")
 
-# Exercise: do the same for the relationship between elevation and the elements
 
 pairs(meuse[,3:7], col="red", pch=19, cex=3, main="Primo pairs")
 
@@ -69,10 +68,7 @@ pairs(meuse[,3:7], col="red", pch=19, cex=3, main="Primo pairs")
 
 # pairs(meuse[,3:6], lower.panel = panel.correlations, upper.panel = panel.smoothing, diag.panel = panel.histograms)
 
-# EXERCISE: mettere come lower panel lo smoothing, come diagonal apnel gli istogrammi e come upper panel le correlazioni 
-
 # pairs(meuse[,3:6], lower.panel = panel.smoothing, upper.panel = panel.correlations, diag.panel = panel.histograms)
-
 
 ################# funzione plot
 
