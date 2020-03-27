@@ -30,7 +30,7 @@ bubble(meuse,"zinc")
 
 # bubble del rame colorato di rosso
 
-bubble(meuse,"copper",col="red
+bubble(meuse,"copper",col="red")
 
 # foraminiferi (sofia), carbon capture)
 #array
@@ -39,7 +39,7 @@ foram<-c(10, 20, 35, 55, 67, 80)
 
 carbon <- c(5, 15, 30, 70, 85, 99)
 
-lot(foram,carbon,col="green",cex=2,pch=19)
+plot(foram,carbon,col="green",cex=2,pch=19)
 
 #dati dall'esterno covid-19
 
@@ -49,4 +49,10 @@ setwd("c:/lab")
 
 # funzione per leggere la tabella
 
-covid<-read.table("covid_agg.csv",head=TRUE)
+read.table("covid_agg.csv",head=TRUE)
+
+# Per leggere la tabella
+
+covid <- read.table("covid_agg.csv",head=TRUE)
+
+
