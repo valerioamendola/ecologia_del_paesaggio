@@ -77,6 +77,8 @@ points(covids)
      
 q()
      
+# seconda parte     
+     
 setwd("C:/lab")
      
 load(".RData")     
