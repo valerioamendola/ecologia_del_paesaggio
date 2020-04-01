@@ -74,5 +74,46 @@ plot(d)
 points(covids)
 
 # per salvare 
-
+     
 q()
+     
+setwd("C:/lab")
+     
+load(".RData")     
+
+ls()
+     
+library(spatstat)     
+    
+plot(d)
+     
+# palette per cambiare i colori del grafico
+     
+cl <- colorRampPalette(c('yellow','orange','red')) (100)    
+     
+plot(d,col=cl) 
+     
+# esercizio  colori dal verde al blu
+     
+cl <- colorRampPalette(c('green','yellow','purple','blue')) (100)
+     
+plot(d,col=cl)  
+     
+points(covids)     
+
+coastlines <- readOGR("ne_10m_coastline.shp")
+     
+install.packages("rgdal")
+     
+library(rgdal) 
+     
+plot(coastlines, add=T)    
+     
+# esercizio cambiare i colori alla mappa
+     
+cl <- colorRampPalette(c('orange','light blue','blue','orange')) (100)
+     
+plot(d,col=cl)     
+     
+plot(coastlines, add=T, col= "black")     
+     
