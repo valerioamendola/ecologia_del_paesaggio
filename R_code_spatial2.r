@@ -55,4 +55,5 @@ read.table("covid_agg.csv",head=TRUE)
 
 covid <- read.table("covid_agg.csv",head=TRUE)
 
+# L'errore era dovuto alla presenza di virgolette nel fil excel, fill=TRUE forzava ma non risolveva
 
