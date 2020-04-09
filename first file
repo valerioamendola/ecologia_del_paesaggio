@@ -1,13 +1,17 @@
 # PRIMO CODICE R ECOLOGIA DEL PAESAGGIO
 
 install.packages("sp")
+
 library(sp)
-# require(sp) è un altro comando per far partire l librerie
+
+# require(sp) è un altro comando per far partire le librerie
 
 data(meuse)
+
 meuse
 
 head(meuse)
+
 names(meuse)
 
 summary(meuse)
@@ -32,7 +36,6 @@ pairs(meuse[,3:6], col="red", pch=19, cex=3, main="Primo pairs")
 
 pairs(meuse[,3:7], col="red", pch=19, cex=3, main="Primo pairs")
 
---------
 # panels from outside
 
 # panel.correlations <- function(x, y, digits=1, prefix="", cex.cor)
