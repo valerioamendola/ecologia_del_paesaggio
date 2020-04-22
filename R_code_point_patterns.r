@@ -1,6 +1,9 @@
 install.packages("ggplot2")
+
 install.packages("spatstat")
+
 library(spatstat)
+
 library(ggplot2)
 
 # Codice per analisi dei point pattern
@@ -117,5 +120,108 @@ cl <- colorRampPalette(c('orange','light blue','blue','orange')) (100)
      
 plot(d,col=cl)     
      
-plot(coastlines, add=T, col= "black")     
+plot(coastlines, add=T, col= "black")    
      
+# Exercise 22/04/2020
+     
+library(spatstat)
+
+library(rgdal) # for the coastlines
+
+setwd("C:/lab")
+
+load("point_pattern.RData")
+
+ls()
+
+cl5 <- colorRampPalette(c('cyan', 'purple', 'red')) (200) 
+
+plot(d, col=cl5, main="density")
+
+points(covids)
+
+coastlines <- readOGR("ne_10m_coastline.shp")
+
+plot(coastlines, add=T)
+     
+# interpolazione
+     
+library(sptatstat)
+     
+attach(covid)
+     
+covids <- ppp(lon, lat, c(-180,180), c(-90,90)) 
+     
+marks(covids) <- covid$cases
+
+s <- Smooth(covids)
+     
+plot(s)
+     
+# Exercise: plot(s) with points and coastlines
+
+cl5 <- colorRampPalette(c('cyan', 'purple', 'red')) (200)
+     
+plot(s, col=cl5, main="density")
+
+points(covids)
+     
+coastlines <- readOGR("ne_10m_coastline.shp")
+
+plot(coastlines, add=T)
+     
+##### mappa finale
+
+par(mfrow=c(2,1))
+
+# densità
+     
+d <- density(covids)
+     
+cl5 <- colorRampPalette(c('cyan', 'purple', 'red')) (200)
+     
+plot(d, col=cl5, main="density")
+     
+points(covids)
+     
+coastlines <- readOGR("ne_10m_coastline.shp")
+     
+plot(coastlines, add=T)
+
+# interpolazione del numero di casi
+
+cl5 <- colorRampPalette(c('cyan', 'purple', 'red')) (200)
+     
+plot(s, col=cl5, main="estimate of cases")
+     
+points(covids)
+     
+coastlines <- readOGR("ne_10m_coastline.shp")
+     
+plot(coastlines, add=T
+ 
+dev.off
+     
+# dati San Marino
+
+#library spatstat
+     
+setwd("C:/lab")  
+     
+load("Tesi.RData")
+ 
+ls()
+     
+head(Tesi)
+
+attach(Tesi)
+     
+summary(Tesi)
+     
+Tesippp <- ppp(Longitude, Latitude, c(12.41,12.47), c(43.9,43.95)) 
+     
+dT <- density(Tesippp)
+     
+plot(dT)
+
+points(Tesippp, col="black")     
