@@ -68,7 +68,7 @@ freq(d2c$map)
 
 # tot = 342726
 
-totd2<- 178381 + 
+totd2<- 178381 + 164345
 
 # percentuale  foresta 52.05      aree aperte 47.95
 
@@ -86,7 +86,50 @@ output <- data.frame(cover,before,after)
  
 View(output)
 
+load("defor.RData")
+        
+par(mfrow=c(1,2))
+        
+cl <- colorRampPalette(c('black','green'))(100)
+        
+plot(d1c$map, col=cl)
+        
+plot(d2c$map, col=cl)
 
+# istogrammi % prima della deforestazione 
+
+ggplot(output, aes(x=cover, y=before, color=cover)) +
+        
+geom_bar(stat="identity", fill="white")
+
+# excerise   dopo la deforestazione
+
+ggplot(output, aes(x=cover, y=after, color=cover)) +
+        
+geom_bar(stat="identity", fill="white")
+ 
+install.packages("gridExtra")
+ 
+library(gridExtra) 
+        
+grafico1 <- ggplot(output, aes(x=cover, y=before, color=cover)) + 
+geom_bar(stat="identity", fill="white")
+
+grafico2 <- ggplot(output, aes(x=cover, y=after, color=cover)) +         
+geom_bar(stat="identity", fill="white")
+        
+# uso di grid.arrange per il plot dei due grafici
+
+grid.arrange(grafico1, grafico2, nrow = 1)
+ 
+       
+ 
+        
+        
+
+
+        
+ 
 
 
 
