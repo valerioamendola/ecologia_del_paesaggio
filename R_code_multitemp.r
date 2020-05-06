@@ -2,11 +2,13 @@
 
 setwd("C:/lab/")
  
-library(raster
+library(raster)
 
 library(RStoolbox)
 
 library(ggplot2)
+
+library(gridExtra)
  
 defor1 <- brick("defor1_.jpg")
  
@@ -108,9 +110,7 @@ ggplot(output, aes(x=cover, y=after, color=cover)) +
         
 geom_bar(stat="identity", fill="white")
  
-install.packages("gridExtra")
- 
-library(gridExtra) 
+install.packages("gridExtra") 
         
 grafico1 <- ggplot(output, aes(x=cover, y=before, color=cover)) + 
 geom_bar(stat="identity", fill="white")
@@ -120,6 +120,18 @@ geom_bar(stat="identity", fill="white")
         
 # uso di grid.arrange per il plot dei due grafici
 
+grid.arrange(grafico1, grafico2, nrow = 1)
+
+# spiegare al software il limite di y a 100
+
+grafico1 <- ggplot(output, aes(x=cover, y=before, color=cover)) + 
+geom_bar(stat="identity", fill="white") +
+ylim(0, 100)
+
+ grafico2 <- ggplot(output, aes(x=cover, y=after, color=cover)) + 
+geom_bar(stat="identity", fill="white") +
+ylim(0, 100)
+ 
 grid.arrange(grafico1, grafico2, nrow = 1)
  
        
