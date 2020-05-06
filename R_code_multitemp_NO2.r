@@ -82,7 +82,20 @@ plot(EN12, col=cl)
 
 plot(EN13, col=cl)
  
+setwd("C:/lab/")
+     
+setwd("C:/lab/esa_no2/")
 
-
- 
+rlist <- list.files(pattern=".png")
+     
+# per caricare immagini in una volta
+     
+listafinale <- lapply(rlist, raster)
+     
+EN <- stack(listafinale)
+     
+cl <- colorRampPalette(c('red','orange','yellow'))(100) #
+     
+plot(EN, col=cl)
+     
  
