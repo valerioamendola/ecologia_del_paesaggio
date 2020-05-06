@@ -52,6 +52,8 @@ cldif <- colorRampPalette(c('blue','black','yellow'))(100) #
 
 plot(difno2, col=cldif)
 
+# plot di tutte le immagini
+
 par(mfrow=c(4,4))
  
 plot(EN01, col=cl)
