@@ -33,6 +33,7 @@ bubble(meuse,"zinc")
 bubble(meuse,"copper",col="red")
 
 # foraminiferi (sofia), carbon capture)
+
 #array
 
 foram<-c(10, 20, 35, 55, 67, 80)
