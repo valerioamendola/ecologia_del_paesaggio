@@ -100,23 +100,17 @@ plot(d2c$map, col=cl)
 
 # istogrammi % prima della deforestazione 
 
-ggplot(output, aes(x=cover, y=before, color=cover)) +
-        
-geom_bar(stat="identity", fill="white")
+ggplot(output, aes(x=cover, y=before, color=cover)) + geom_bar(stat="identity", fill="white")
 
 # excerise   dopo la deforestazione
 
-ggplot(output, aes(x=cover, y=after, color=cover)) +
-        
-geom_bar(stat="identity", fill="white")
+ggplot(output, aes(x=cover, y=after, color=cover)) + geom_bar(stat="identity", fill="white")
  
 install.packages("gridExtra") 
         
-grafico1 <- ggplot(output, aes(x=cover, y=before, color=cover)) + 
-geom_bar(stat="identity", fill="white")
+grafico1 <- ggplot(output, aes(x=cover, y=before, color=cover)) + geom_bar(stat="identity", fill="white")
 
-grafico2 <- ggplot(output, aes(x=cover, y=after, color=cover)) +         
-geom_bar(stat="identity", fill="white")
+grafico2 <- ggplot(output, aes(x=cover, y=after, color=cover)) + geom_bar(stat="identity", fill="white")
         
 # uso di grid.arrange per il plot dei due grafici
 
@@ -124,13 +118,9 @@ grid.arrange(grafico1, grafico2, nrow = 1)
 
 # spiegare al software il limite di y a 100
 
-grafico1 <- ggplot(output, aes(x=cover, y=before, color=cover)) + 
-geom_bar(stat="identity", fill="white") +
-ylim(0, 100)
+grafico1 <- ggplot(output, aes(x=cover, y=before, color=cover)) + geom_bar(stat="identity", fill="white") + ylim(0, 100)
 
- grafico2 <- ggplot(output, aes(x=cover, y=after, color=cover)) + 
-geom_bar(stat="identity", fill="white") +
-ylim(0, 100)
+grafico2 <- ggplot(output, aes(x=cover, y=after, color=cover)) + geom_bar(stat="identity", fill="white") + ylim(0, 100)
  
 grid.arrange(grafico1, grafico2, nrow = 1)
  
