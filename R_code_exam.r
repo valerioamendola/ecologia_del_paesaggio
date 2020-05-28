@@ -75,7 +75,7 @@ plot(cadmium, copper, pch=17, col="green", main="primo plot", xlab="cadmio", yla
 ############################################
 ############################################
  
-#2. R_code_spatial.r 
+2. R_code_spatial.r  
 
 # R spaziale: funzioni spaziali in Ecologia del paesaggio
 
@@ -91,21 +91,27 @@ plot(cadmium,lead,col="red",pch=19,cex=2)
 
 plot(copper,zinc,col="green",pch=17,cex=2)
 
-# per cambiare etichetta
+# per cambiare etichetta:
+
 plot(copper,zinc,col="green",pch=17,cex=2,xlab="rame",ylab="zinc")
 
-#multiframe o multipanel
+#multiframe o multipanel:
 
 par(mfrow=c(1,2))
+
 plot(cadmium,lead,col="red",pch=19,cex=2)
+
 plot(copper,zinc,col="green",pch=17,cex=2)
 
-#invertiamo riga colonna in colonna riga
+#invertiamo riga colonna in colonna riga:
+
 par(mfrow=c(2,1))
+
 plot(cadmium,lead,col="red",pch=19,cex=2)
+
 plot(copper,zinc,col="green",pch=17,cex=2)
 
-#multiframe automatico
+#multiframe automatico:
 
 install.packages("GGally")
 
@@ -125,7 +131,7 @@ spplot(mesue,zinc)
 ############################################
 ############################################
  
-# 3. R_code_spatial 2
+3. R_code_spatial2.r
 
 # R spatial
 
@@ -184,9 +190,13 @@ read.table("covid_agg.csv",head=TRUE)
 
 covid <- read.table("covid_agg.csv",head=TRUE)
 
-# L'errore era dovuto alla presenza di virgolette nel fil excel, fill=TRUE forzava ma non 
+# L'ERRORE ERA DOVUTO ALLA PRESENZA DI VIRGOLETTE NEL FILE EXCEL, FILL=TRUE FORZAVA MA NON RISOLVEVA IL PROBLEMA
 
-# R code point pattern
+############################################
+############################################
+############################################
+ 
+4. R_code_point_pattern 
 
 install.packages("ggplot2")
 
@@ -254,7 +264,7 @@ ggplot(covid,aes(x=lon,y=lat,size=cases)) + geom_point()
 
 # density
 # create dataset for spatstat
-#  prima attach covid
+# prima attach covid
 
 attach(covid)
 
@@ -360,7 +370,7 @@ coastlines <- readOGR("ne_10m_coastline.shp")
 
 plot(coastlines, add=T)
      
-##### mappa finale
+# mappa finale
 
 par(mfrow=c(2,1))
 
@@ -394,7 +404,7 @@ dev.off
      
 # dati San Marino
 
-#library spatstat
+# library spatstat
      
 setwd("C:/lab")  
      
@@ -474,7 +484,11 @@ plot(interpol, main="Estimate of species richness")
      
 points(Tesippp,col="green")
 
-# R code teleril
+############################################
+############################################
+############################################
+ 
+5. R_code_teleril.r 
 
 # Codice r per analisi di immagini satellitari
 
@@ -612,7 +626,7 @@ clb <- colorRampPalette(c('dark blue','blue','light blue'))(100) #
 
 plot(p224r63_1988$B1_sre, col=clb)
 
- # green
+# green
 
 clg <- colorRampPalette(c('dark green','green','light green'))(100) # 
 
@@ -744,10 +758,48 @@ par(mfrow=c(2,1))
 plot(difdvi, col=cldifdvi)
 
 plot(difdvilr50, col=cldifdvi)
- 
-# R code multitemp 
+     
+############################################
+############################################
+############################################    
 
-# analisi multitemporale variazione della land cover
+6. R_code_landcover.r  
+    
+# R code landcover
+
+libray(raster)
+
+library(RStoolbox)
+
+setwd("c:/lab")
+
+p224r63_2011 <- brick("p224r63_2011_masked.grd
+
+plotRGB(p224r63_2011, r=4, g=3, b=2, stretch="Lin")
+
+p224r63_2011c <- unsuperClass(p224r63_2011, nClasses=4)
+
+p224r63_2011c
+
+plot(p224r63_2011c$map)
+
+clclass <- colorRampPalette(c('green', 'red', 'blue', 'black'))(100) 
+
+plot(p224r63_2011c$map, col=clclass)
+ 
+# esperimento per vedere la sensibilità rispetto al numero di classi
+
+p224r63_2011c <- unsuperClass(p224r63_2011, nClasses=2)
+  
+plot(p224r63_2011c$map)
+
+############################################
+############################################
+############################################    
+   
+7. R_code_multitemp.r  
+
+# Analisi multitemporale variazione della land cover
 
 setwd("C:/lab/")
  
@@ -807,7 +859,7 @@ plot(d2c$map, col=cl)
 
 freq(d1c$map)
 
-# 1 308038   2   33254   # tot = 341284 
+# 1) 308038   2) 33254   # tot = 341284 
 
 totd1<- 33254 + 308038
 
@@ -821,7 +873,7 @@ freq(d2c$map)
 
 totd2<- 178381 + 164345
 
-# percentuale  foresta 52.05      aree aperte 47.95
+# percentuale  foresta 52.05     aree aperte 47.95
 
 percent2 <- freq(d2c$map) * 100 / totd2
 
@@ -861,11 +913,9 @@ geom_bar(stat="identity", fill="white")
  
 install.packages("gridExtra") 
         
-grafico1 <- ggplot(output, aes(x=cover, y=before, color=cover)) + 
-geom_bar(stat="identity", fill="white")
+grafico1 <- ggplot(output, aes(x=cover, y=before, color=cover)) + geom_bar(stat="identity", fill="white")
 
-grafico2 <- ggplot(output, aes(x=cover, y=after, color=cover)) +         
-geom_bar(stat="identity", fill="white")
+grafico2 <- ggplot(output, aes(x=cover, y=after, color=cover)) + geom_bar(stat="identity", fill="white")
         
 # uso di grid.arrange per il plot dei due grafici
 
@@ -873,17 +923,17 @@ grid.arrange(grafico1, grafico2, nrow = 1)
 
 # spiegare al software il limite di y a 100
 
-grafico1 <- ggplot(output, aes(x=cover, y=before, color=cover)) + 
-geom_bar(stat="identity", fill="white") +
-ylim(0, 100)
+grafico1 <- ggplot(output, aes(x=cover, y=before, color=cover)) + geom_bar(stat="identity", fill="white") + ylim(0, 100)
 
- grafico2 <- ggplot(output, aes(x=cover, y=after, color=cover)) + 
-geom_bar(stat="identity", fill="white") +
-ylim(0, 100)
+grafico2 <- ggplot(output, aes(x=cover, y=after, color=cover)) + geom_bar(stat="identity", fill="white") + ylim(0, 100)
  
 grid.arrange(grafico1, grafico2, nrow = 1)
 
-# R code multitemp No2
+############################################
+############################################
+############################################  
+
+8. R_code_multitemp_NO2.r  
 
 # codice per analisi ESA cambiamento NO2 da gennaio a marzo 2020
 
@@ -1008,10 +1058,14 @@ boxplot(EN, horizontal=T)
 boxplot(EN, horizontal=T,outline=F)
  
 boxplot(EN, horizontal=T,outline=F,axes=T)
-       
-# R code snow
 
- setwd("C:/lab/")
+############################################
+############################################
+############################################  
+       
+9. R_code_snow.r 
+
+setwd("C:/lab/")
 
 install.packages("ncdf4")
 
@@ -1068,8 +1122,12 @@ source("prediction.r")
 predicted.snow.2025.norm <- raster("predicted.snow.2025.norm.tif")
  
 plot(predicted.snow.2025.norm, col=cl)
- 
-# R code patches
+
+############################################
+############################################
+############################################
+
+10. R_code_patches.r
 
 setwd("C:/lab/")
 
