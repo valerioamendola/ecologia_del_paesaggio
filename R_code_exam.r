@@ -21,8 +21,8 @@
   
 # PRIMO CODICE R PER IL CORSO DI ECOLOGIA DEL PAESAGGIO
 
-# PER L'INSTALLAZIONE DI UN PACCHETTO O LIBERERIA, CIOÈ BLOCCHI DI FUNZIONI CHE POSSONO ESSERE IMPORTATI SU R, SI UTILIZZANO
-# LE VIRGOLETTE PERCHÈ SI FA DIALOGRARE R CON L'ESTERNO.
+# PER L'INSTALLAZIONE DI UN PACCHETTO O LIBERERIA, CIOÈ BLOCCHI DI FUNZIONI CHE POSSONO ESSERE IMPORTATI SU R, SI UTILIZZA IL COMANDO
+# install.packages("..."), UTILIZZANDO LE VIRGOLETTE PERCHÈ SI FA DIALOGRARE R CON L'ESTERNO.
 
 install.packages("sp")
 
@@ -94,7 +94,7 @@ pairs(meuse[,3:6], col="red", pch=19, cex=3)
 
 pairs(meuse[,3:6], col="red", pch=19, cex=3, main="Primo pairs")
 
-# Exercise: ripetere lo stesso pairs, includendo anche elevation; ELEVATION RAPPRESENTA LA VARIABILE NUMERO 7.
+# esercizio: ripetere lo stesso pairs, includendo anche elevation; ELEVATION RAPPRESENTA LA VARIABILE NUMERO 7.
 
 pairs(meuse[,3:7], col="red", pch=19, cex=3, main="Primo pairs")
 
