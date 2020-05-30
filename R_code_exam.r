@@ -167,8 +167,8 @@ plot(cadmium, copper, pch=17, col="green", main="primo plot")
 
 plot(cadmium, copper, pch=17, col="green", main="primo plot", xlab="cadmio", ylab="rame")
 
-# AGGIUNGENDO COME ARGOMENTO ANCHE cex.lab=... e cex=... È POSSIBILE CAMBIARE LA GRANDEZZA DEI CARATTERI DEI LABELS, IN QUESTO CASO DEL
-# DOPPIO, E DEI SIMBOLI DEI PUNTI SUL GRAFICO.
+# AGGIUNGENDO COME ARGOMENTO ANCHE cex.lab=... e cex=... È POSSIBILE CAMBIARE LA GRANDEZZA DEI CARATTERI DELLE LABELS, IN QUESTO CASO
+# DEL DOPPIO, E DEI SIMBOLI DEI PUNTI SUL GRAFICO.
 
 plot(cadmium, copper, pch=17, col="green", main="primo plot", xlab="cadmio", ylab="rame", cex.lab=2, cex=2) 
 
