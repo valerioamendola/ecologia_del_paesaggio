@@ -123,7 +123,7 @@ ok <- is.finite(x) & is.finite(y)
 if (any(ok))
 lines(stats::lowess(x[ok], y[ok], f = span, iter = iter),
 col = 1, ...)
- }
+}
  
 # panel.histograms PERMETTE DI CREARE GLI ISTOGRAMMI
 
