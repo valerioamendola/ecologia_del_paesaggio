@@ -192,11 +192,11 @@ plot(cadmium,lead,col="red",pch=19,cex=2)
 
 plot(copper,zinc,col="green",pch=17,cex=2)
 
-# per cambiare etichetta:
+# PER CAMBIARE L'ETICHETTA:
 
 plot(copper,zinc,col="green",pch=17,cex=2,xlab="rame",ylab="zinc")
 
-#multiframe o multipanel:
+#multiframe o multipanel: VISUALIZZAZIONE DI PIÙ GRAFICI ALL'INTERNO DELLA FINESTRA.
 
 par(mfrow=c(1,2))
 
@@ -222,11 +222,13 @@ ggpairs(meuse[,3:6])
 
 #spatial
 
-head(mesue)
+head(meuse)
+
+# FAR LEGGERE AL SOFTWARE LE COORDINATE X E Y
 
 coordinates(meuse)=~x+y
 
-spplot(mesue,zinc)
+spplot(mesue,"zinc")
 
 ############################################
 ############################################
