@@ -62,10 +62,11 @@ pairs(meuse)
 
 # ~ È UN SIMBOLO CHE IN R RAPPRESENTA IL SIMBOLO = ; IN QUESTO CASO VENGONO MESSE IN RELAZIONE I VARI ELEMENTI, UTILIZZANDO
 # LE VIRGOLE CHE FUNGONO DA SEPARATORI DEGLI ARGOMENTI A FUNZIONE. 
+# GLI ARGOMENTI A FUNZIONE VANNO MESSI TRA PARENTESI
 
 pairs(~ cadmium + copper + lead , data = meuse)
 
-# esercizio: ripetere la funzione pairs, aggiungendo cadmio, rame, piombo e zinco.
+# Esercizio: ripetere la funzione pairs, aggiungendo cadmio, rame, piombo e zinco.
 
 pairs(~ cadmium + copper + lead + zinc , data = meuse)
 
@@ -98,17 +99,76 @@ pairs(meuse[,3:6], col="red", pch=19, cex=3, main="Primo pairs")
 
 pairs(meuse[,3:7], col="red", pch=19, cex=3, main="Primo pairs")
 
-# funzione plot
+# panel.correlations È LA CORRELAZIONE TRA DUE VARIABILI; <- SERVE AD ATTRIBUIRE UN NOME ALLA FUNZIONE.
+
+panel.correlations <- function(x, y, digits=1, prefix="", cex.cor)
+{
+usr <- par("usr"); on.exit(par(usr))
+par(usr = c(0, 1, 0, 1))
+r1=cor(x,y,use="pairwise.complete.obs")
+r <- abs(cor(x, y,use="pairwise.complete.obs"))
+txt <- format(c(r1, 0.123456789), digits=digits)[1]
+txt <- paste(prefix, txt, sep="")
+if(missing(cex.cor)) cex <- 0.9/strwidth(txt)
+text(0.5, 0.5, txt, cex = cex * r)
+}
+
+# panel.smoothing FA UNA REGRESSIONE TRA LE VARIABILI
+ 
+panel.smoothing <- function (x, y, col = par("col"), bg = NA, pch = par("pch"),
+cex = 1, col.smooth = "red", span = 2/3, iter = 3, ...)
+{
+points(x, y, pch = pch, col = col, bg = bg, cex = cex)
+ok <- is.finite(x) & is.finite(y)
+if (any(ok))
+lines(stats::lowess(x[ok], y[ok], f = span, iter = iter),
+col = 1, ...)
+ }
+ 
+# panel.histograms PERMETTE DI CREARE GLI ISTOGRAMMI
+
+panel.histograms <- function(x, ...)
+{
+usr <- par("usr"); on.exit(par(usr))
+par(usr = c(usr[1:2], 0, 1.5) )
+h <- hist(x, plot = FALSE)
+breaks <- h$breaks; nB <- length(breaks)
+y <- h$counts; y <- y/max(y)
+rect(breaks[-nB], 0, breaks[-1], y, col="white", ...)
+}
+
+# lower.panel È LA PARTE SOTTO LA DIAGONALE, upper.panel È LA PARTE SOPRA LA DIAGONALE, diag.panel È LA DIAGONALE.
+
+pairs(meuse[,3:6], lower.panel = panel.correlations, upper.panel = panel.smoothing, diag.panel = panel.histograms)
+
+# Esercizio: mettere come lower panel lo smoothing, come diagonal apnel gli istogrammi e come upper panel le correlazioni 
+
+pairs(meuse[,3:6], lower.panel = panel.smoothing, upper.panel = panel.correlations, diag.panel = panel.histograms)
+
+# LA FUNZIONE plot SERVE A PLOTTARE DUE O PIÙ VARIABILI E ANCHE IN QUESTO CASO GLI ARGOMENTI A FUNZIONE SONO TRA PARENTESI; plot È
+# UNA FUNZONE GENERICA PER LA RAPPRESENTAZIONE GRAFICA DI OGGETTI IN R
+# $ IN R SERVE A COLLEGARE DUE PEZZI, IN QUESTO CASO LA COLONNA E IL DATASET.
 
 plot(meuse$cadmium,meuse$copper)
 
+# LA FUNZIONE attach(...) PERMETTE DI EVITARE DI DOVER COLLEGARE OGNI VOLTA LE VARIABILI AL DATAFRAME.
+
 attach(meuse)
+
+# IN QUESTO CASO DOPO attach(meuse) SI PUÒ PLOTTARE DIRETTAMENTE SENZA IL SIMBOLO $.
 
 plot(cadmium,copper) 
 
+# PER CAMBIARE IL SIMBOLO IN TRIANGOLO, IL COLORE IN VERDE E IL TITOLO, SI UTILIZZA ANCHE IN QUESTO CASO pch, col E main.
+
 plot(cadmium, copper, pch=17, col="green", main="primo plot")
 
-plot(cadmium, copper, pch=17, col="green", main="primo plot", xlab="cadmio", ylab="rame") 
+# CON xlab= e ylab= È POSSIBILE CAMBIARE IL NOME ALLE LABELS DEL GRAFICO.
+
+plot(cadmium, copper, pch=17, col="green", main="primo plot", xlab="cadmio", ylab="rame")
+
+# AGGIUNGENDO COME ARGOMENTO ANCHE cex.lab=... e cex=... È POSSIBILE CAMBIARE LA GRANDEZZA DEI CARATTERI DEI LABELS, IN QUESTO CASO DEL
+# DOPPIO, E DEI SIMBOLI DEI PUNTI SUL GRAFICO.
 
 plot(cadmium, copper, pch=17, col="green", main="primo plot", xlab="cadmio", ylab="rame", cex.lab=2, cex=2) 
 
