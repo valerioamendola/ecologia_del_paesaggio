@@ -269,7 +269,7 @@ bubble(meuse,"zinc")
 
 bubble(meuse,"copper",col="red")
 
-# foraminiferi (sofia), carbon capture)
+# foraminiferi (Sofia), carbon capture)
 #array; CREAZIONE DI UN VETTORE; LA LETTERA c RAPPRESENTA IL TERMINE CONCATENATE E LA FRECCIA SERVE AD ATTRIBUIRE IL NOME. 
 
 foram<-c(10, 20, 35, 55, 67, 80)
