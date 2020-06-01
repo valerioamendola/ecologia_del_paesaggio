@@ -19,7 +19,9 @@
  
 # 1. R_code_first.r
   
-# PRIMO CODICE R PER IL CORSO DI ECOLOGIA DEL PAESAGGIO
+# PRIMO CODICE R PER IL CORSO DI ECOLOGIA DEL PAESAGGIO.
+
+# I COMMENTI SONO INSERITI AL DI SOPRA DEI VARI COMANDI.
 
 # PER L'INSTALLAZIONE DI UN PACCHETTO O LIBERERIA, CIOÈ BLOCCHI DI FUNZIONI CHE POSSONO ESSERE IMPORTATI SU R, SI UTILIZZA IL COMANDO
 # install.packages("..."), UTILIZZANDO LE VIRGOLETTE PERCHÈ SI FA DIALOGRARE R CON L'ESTERNO.
@@ -33,7 +35,7 @@ library(sp)
 
 # require(...) è un altro comando per far partire le librerie.
 
-# meuse È UN DATASET DISPONIBILE ALL'INTERNO DELL PACCHETTO sp, E SI RICHIAMA ATTRAVERSO LA FUNZIONE data (...)
+# meuse È UN DATASET DISPONIBILE ALL'INTERNO DELL PACCHETTO sp, E SI RICHIAMA ATTRAVERSO LA FUNZIONE data (...).
 
 data(meuse)
 
@@ -55,14 +57,11 @@ names(meuse)
 summary(meuse)
 
 # LA FUNZIONE pairs PERMETTE DI OTTENERE UN GRAFICO CHE CONTIENE I VARI PLOT CHE MOSTRANO GRAFICAMENTE LE CORRELAZIONI TRA LE VARIABILI.
-# IN QUESTO CASO SI TRATTA DI UN NUMERO LIMITATO DI VARIABILI. SE CI FOSSERO NUMEROSE VARIABILI, CI SAREBBERO PROBEMI NELL'OSSERVAZIONE
-# DEL GRAFICO
-
+# IN QUESTO CASO SI TRATTA DI UN NUMERO LIMITATO DI VARIABILI. 
 pairs(meuse)
 
 # ~ È UN SIMBOLO CHE IN R RAPPRESENTA IL SIMBOLO = ; IN QUESTO CASO VENGONO MESSE IN RELAZIONE I VARI ELEMENTI, UTILIZZANDO
-# LE VIRGOLE CHE FUNGONO DA SEPARATORI DEGLI ARGOMENTI A FUNZIONE. 
-# GLI ARGOMENTI A FUNZIONE VANNO MESSI TRA PARENTESI
+# LE VIRGOLE CHE FUNGONO DA SEPARATORI DEGLI ARGOMENTI A FUNZIONE. GLI ARGOMENTI A FUNZIONE VANNO MESSI TRA PARENTESI.
 
 pairs(~ cadmium + copper + lead , data = meuse)
 
@@ -224,7 +223,7 @@ ggpairs(meuse[,3:6])
 
 head(meuse)
 
-# FAR LEGGERE AL SOFTWARE LE COORDINATE X E Y
+# FAR LEGGERE AL SOFTWARE LE COORDINATE X E Y.
 
 coordinates(meuse)=~x+y
 
@@ -252,17 +251,17 @@ head(meuse)
 
 coordinates(meuse)=~x+y
 
-# spplot dei dati zinco
+# spplot dei dati zinco; DISTRIBUZIONE SPAZIALE DELLA VARIABILE ZINCO. I DIVERSI COLORI RAPPRESENTANO I VALORI.
 
 spplot(meuse,"zinc")
 
-#spplot del rame
+#spplot del rame; DISTRIBUZIONE SPAZIALE DELLA VARIABILE RAME.
 
 # per vedere il nome si può usare names o head
 
 spplot(meuse,"copper")
 
-# bubble
+# bubble; DISTRIBUZIONE SPAZIALE DELLE VARIABILI RAPPRESENTATA DA PUNTI ATTRAVERSO BOLLE LE CUI DIMENSIONI NE RISPECCHIANO IL VALORE.
 
 bubble(meuse,"zinc")
 
@@ -271,7 +270,7 @@ bubble(meuse,"zinc")
 bubble(meuse,"copper",col="red")
 
 # foraminiferi (sofia), carbon capture)
-#array
+#array; CREAZIONE DI UN VETTORE; LA LETTERA c RAPPRESENTA IL TERMINE CONCATENATE E LA FRECCIA SERVE AD ATTRIBUIRE IL NOME. 
 
 foram<-c(10, 20, 35, 55, 67, 80)
 
@@ -281,19 +280,20 @@ plot(foram,carbon,col="green",cex=2,pch=19)
 
 #dati dall'esterno covid-19
 
-# cartella da creare su Windows c:/lab
+# cartella da creare su Windows c:/lab; ambiente R È ORIENTATO SU UNA DIRECTORY SPECIFICA DEL COMPUTER.
 
 setwd("c:/lab")
 
-# funzione per leggere la tabella
+# funzione per leggere la tabella; TABELLA CON IL NUMERO DI CASI DI COVID IN VARI PAESI CON RELATIVE COORDINATE.
+# header = TRUE: IDENTIFICA LA PRIMA RIGA DELLA MATRICE DEI DATI COME QUELLA CONTENENTE I NOMI DELLE VARIABILI.
 
 read.table("covid_agg.csv",head=TRUE)
 
-# Per leggere la tabella
+# PER ATTRIBUIRE ALLA FUNZIONE IL NOME covid.
 
 covid <- read.table("covid_agg.csv",head=TRUE)
 
-# L'ERRORE ERA DOVUTO ALLA PRESENZA DI VIRGOLETTE NEL FILE EXCEL, FILL=TRUE FORZAVA MA NON RISOLVEVA IL PROBLEMA
+# L'ERRORE ERA DOVUTO ALLA PRESENZA DI VIRGOLETTE NEL FILE EXCEL, FILL=TRUE FORZAVA MA NON RISOLVEVA IL PROBLEMA.
 
 ############################################
 ############################################
@@ -301,15 +301,21 @@ covid <- read.table("covid_agg.csv",head=TRUE)
  
 4. R_code_point_pattern 
 
+# INSTALLAZIONE DEL PACCHETTO ggplot2.
+
 install.packages("ggplot2")
 
+# INSTALLAZIONE DEL PACCHETTO spatstat.
+
 install.packages("spatstat")
+
+# SI RICHIAMANO LE LIBRERIE CHE SERVONO.
 
 library(spatstat)
 
 library(ggplot2)
 
-# Codice per analisi dei point pattern
+# Codice per analisi dei point pattern.
 
 setwd("C:/lab")
 
@@ -323,19 +329,19 @@ head(covid)
 
 plot(covid$country,covid$cases)
 
-# etichette parallele 0
+# ETICHETTE PARALLELE: 0; las SERVE A POSIZIONERE LE ETICHETTE SUL GRAFICO. CON IL NUMERO 0 AD ESEMPIO SI OTTENGONO ETICHETTE PARALLELE.
 
 plot(covid$country,covid$cases,las=0)
 
-# etichette orizzontali 1
+# ETICHETTE ORIZZONTALI:1
 
 plot(covid$country,covid$cases,las=1)
 
-#etichette perpendicolari 2
+# ETCHETTE PERPENDICOLARI:2
 
 plot(covid$country,covid$cases,las=2)
 
-# etichette verticali 3
+# ETICHETTE VERTICALI:3
 
 plot(covid$country,covid$cases,las=3)
 
@@ -349,9 +355,13 @@ data(mpg)
 
 head(mpg)
 
-# data
-# aes
-# tipo di geometria
+# IN QUESTO PACCHETTO È NECESSARIO SPECIFICARE LE COMPONENTI:
+     
+# data: IN QUESTO CASO mpg
+     
+# aes: STA PER AESTHETIC; ALL'INTERNO DELLE PARENTESI SI SPECIFICANO LE COORDINATE X ED Y.
+     
+# tipo di geometria: VARIE OPZIONI RAPPRESENTATE DA LINEE, POLIGONI, PUNTI ETC...
 
 ggplot(mpg,aes(x=displ,y=hwy)) + geom_point()
 
@@ -361,17 +371,22 @@ ggplot(mpg,aes(x=displ,y=hwy)) + geom_line()
 
 ggplot(mpg,aes(x=displ,y=hwy)) + geom_polygon()
 
-# ggplot per covid, richiamiamo prima i nomi con names(covid)
+# ggplot per covid, richiamiamo prima i nomi con names(covid); IN QUESTO CASO SI RIPETE UTILIZZANDO I DATI RELATIVI ALLA TABELLA COVID
+# CON L'AGGIUNTA DELL'ARGOMENTO size= PER ATTRIBUIRE LA DIMENSIONI AI PUNTI SUL GRAFICO, CHE RAPPRESENTANO IL NUMERO DI CASI.
 
 ggplot(covid,aes(x=lon,y=lat,size=cases)) + geom_point()
 
 # density
-# create dataset for spatstat
+# creare un dataset per spatstat
 # prima attach covid
 
 attach(covid)
 
+#  IL COMANDO ppp PERMETTE DI CONVERTIRE I DATI IN UN POINT PATTERN    
+     
 covids <- ppp(lon, lat, c(-180,180), c(-90,90))
+     
+# CON density SI PUÒ OSSERVARE LA DENSITÀ DEI PUNTI.
 
 d <- density(covids)
 
@@ -379,7 +394,7 @@ plot(d)
 
 points(covids)
 
-# per salvare 
+# PER SALVARE.
      
 q()
      
