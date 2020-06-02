@@ -1344,18 +1344,21 @@ list_rast=lapply(rlist, raster)
 snow.multitemp <- stack(list_rast)
 
 par(mfrow=c(1,2))
+# IN QUESTO CASO I VALORI NELLA LEGENDA SONO DIVERSI.
 
 plot(snow.multitemp$snow2000r, col=cl)
 
 plot(snow.multitemp$snow2020r, col=cl)
 
-# per fare in modo che entrambe abbiano gli stessi valori
+# PER FARE IN MODO CHE LA LEGENDA ABBIA GLI STESSI VALORI.
 
 par(mfrow=c(1,2))
 
 plot(snow.multitemp$snow2000r, col=cl, zlim=c(0,250))
 
 plot(snow.multitemp$snow2020r, col=cl, zlim=c(0,250))
+
+# DIFFERENZA TRA LA MAPPA DEL 2020 E DEL 2000.
 
 difsnow = snow.multitemp$snow2020r - snow.multitemp$snow2000r
  
@@ -1385,37 +1388,49 @@ plot(predicted.snow.2025.norm, col=cl)
 
 setwd("C:/lab/")
 
+# CARICARE LIBRERIA raster
+
 library(raster)
+
+# CARICARE LIBRERIA ggplot2
 
 library(ggplot2)
 
+# INSTALLARE PACCHETTO igraph.
+
 install.packages("igraph")
 
+# RICHIAMARE LIBRERIA igraph.
+
 library(igraph)
+
+# CARICAMENTO FILE ASSOCIANDO IL NOME d1c e d2c.
 
 d1c <- raster("d1c.tif")
 
 d2c <- raster("d2c.tif
 
 par(mfrow=c(1,2))
+                      
+# IN QUESTO CASO LA MAPPA RISULTA SBAGLIATA PERCHÈ LA FORESTA È RAPPRESENTATA IN NERO.                      
 
-cl <- colorRampPalette(c('green','black'))(100) #
-
-# mappa sbagliata, la foresta è nera
+cl <- colorRampPalette(c('green','black'))(100)
 
 plot(d1c,col=cl)
 
 plot(d2c,col=cl)
 
-# per correggere invertire
+# PER ATTRIBUIRE LE GIUSTE COLORAZIONI BASTA INVERTIRE black E green.
 
 # foresta: classe 1 ; agricoltura: classe 2
-
+                                            
 cl <- colorRampPalette(c('black','green'))(100) #
 
 plot(d1c,col=cl)
 
 plot(d2c,col=cl)
+                      
+# ANNULLARE I VALORI RELATIVI ALL'AGRICOLTURA; reclassify PERMETTE DI TRASFORMARE LA CLASSE 1 IN NA.                     
 
 d1c.for <- reclassify(d1c, cbind(1,NA))
 
@@ -1425,23 +1440,27 @@ cl <- colorRampPalette(c('black','green'))(100) #
 
 plot(d1c,col=cl)
 
+# SI ANNULLANO ANCHE NELLA SECONDA IMMAGINE.                      
+
 d2c.for <- reclassify(d2c, cbind(1,NA))
 
 par(mfrow=c(1,2))
 
+# PLOTTAGGIO RELATIVO ALLA SOLA FORESTA.
+                      
 plot(d1c)
 
-plot(d2c)
+plot(d2c)                    
 
 d1c.for.pacthes <- clump(d1c.for)
 
-d2c.for.pacthes <- clump(d2c.for)
-
+d2c.for.pacthes<- clump(d2c.for)
+                      
 writeRaster(d1c.for.pacthes, "d1c.for.patches.tif")
 
 writeRaster(d2c.for.pacthes, "d2c.for.patches.tif")
 
-# Exercise: plottare entrambe le mappe una accanto all'altra
+# Esercizio: plottare entrambe le mappe una accanto all'altra
 
 par(mfrow=c(1,2))
 
@@ -1454,7 +1473,17 @@ par(mfrow=c(1,2))
 plot(d1c.for.pacthes, col=clp)
 
 plot(d2c.for.pacthes, col=clp)
+                      
+# PER VEDERE IL NUMERO DI PATCHES DI ENTRAMBI.
 
+# d1c.for.pacthes = 301 patches
+
+# d2c.for.pacthes = 1212 patches                      
+                      
+d1c.for.pacthes
+                      
+d2c.for.pacthes                      
+                    
 time <- c("Before deforestation","After deforestation")
 
 npatches <- c(301,1212)
