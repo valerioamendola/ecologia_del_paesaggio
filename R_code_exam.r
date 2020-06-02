@@ -112,7 +112,7 @@ if(missing(cex.cor)) cex <- 0.9/strwidth(txt)
 text(0.5, 0.5, txt, cex = cex * r)
 }
 
-# panel.smoothing FA UNA REGRESSIONE TRA LE VARIABILI
+# panel.smoothing FA UNA REGRESSIONE TRA LE VARIABILI.
  
 panel.smoothing <- function (x, y, col = par("col"), bg = NA, pch = par("pch"),
 cex = 1, col.smooth = "red", span = 2/3, iter = 3, ...)
@@ -124,7 +124,7 @@ lines(stats::lowess(x[ok], y[ok], f = span, iter = iter),
 col = 1, ...)
 }
  
-# panel.histograms PERMETTE DI CREARE GLI ISTOGRAMMI
+# panel.histograms PERMETTE DI CREARE GLI ISTOGRAMMI.
 
 panel.histograms <- function(x, ...)
 {
@@ -140,7 +140,7 @@ rect(breaks[-nB], 0, breaks[-1], y, col="white", ...)
 
 pairs(meuse[,3:6], lower.panel = panel.correlations, upper.panel = panel.smoothing, diag.panel = panel.histograms)
 
-# Esercizio: mettere come lower panel lo smoothing, come diagonal apnel gli istogrammi e come upper panel le correlazioni 
+# Esercizio: mettere come lower panel lo smoothing, come diagonal apnel gli istogrammi e come upper panel le correlazioni.
 
 pairs(meuse[,3:6], lower.panel = panel.smoothing, upper.panel = panel.correlations, diag.panel = panel.histograms)
 
@@ -337,7 +337,7 @@ plot(covid$country,covid$cases,las=0)
 
 plot(covid$country,covid$cases,las=1)
 
-# ETCHETTE PERPENDICOLARI:2
+# ETICHETTE PERPENDICOLARI:2
 
 plot(covid$country,covid$cases,las=2)
 
@@ -345,7 +345,7 @@ plot(covid$country,covid$cases,las=2)
 
 plot(covid$country,covid$cases,las=3)
 
-# per visualizzare più paesi
+# per visualizzare più paesi.
 
 plot(covid$country,covid$cases,las=3,cex.lab=0.5, cex.axis=0.5
 
@@ -357,7 +357,7 @@ head(mpg)
 
 # IN QUESTO PACCHETTO È NECESSARIO SPECIFICARE LE COMPONENTI:
      
-# data: IN QUESTO CASO mpg
+# data: IN QUESTO CASO mpg.
      
 # aes: STA PER AESTHETIC; ALL'INTERNO DELLE PARENTESI SI SPECIFICANO LE COORDINATE X ED Y.
      
@@ -382,7 +382,7 @@ ggplot(covid,aes(x=lon,y=lat,size=cases)) + geom_point()
 
 attach(covid)
 
-#  IL COMANDO ppp PERMETTE DI CONVERTIRE I DATI IN UN POINT PATTERN    
+#  IL COMANDO ppp PERMETTE DI CONVERTIRE I DATI IN UN POINT PATTERN.    
      
 covids <- ppp(lon, lat, c(-180,180), c(-90,90))
      
@@ -391,48 +391,67 @@ covids <- ppp(lon, lat, c(-180,180), c(-90,90))
 d <- density(covids)
 
 plot(d)
-
+     
+# FUNZIOE PER DISEGNARE UNA SEQUENZA DI PUNTI.
+     
 points(covids)
 
 # PER SALVARE.
      
 q()
      
-# seconda parte     
+# seconda parte 
+     
+# INSTALLAZIONE DELLA LIBRERIA rgdal     
+     
+install.packages("rgdal")
+     
+# RICHIAMARE LA LIBRERIA rgdal; 
+# DATI GEOSPAZIALI.     
+     
+library(rgdal)      
      
 setwd("C:/lab")
      
+# FUNZIONE PER RICHIAMARE NUOVAMENTE I DATI SALVATI PRECEDENTEMENTE.     
+     
 load(".RData")     
 
+# ls() RESTITUISCE I NOMI DELLE VARIBILI.   
+     
 ls()
+     
+# RICHIAMARE LA LIBRERIA spatstat.     
      
 library(spatstat)     
     
 plot(d)
      
-# palette per cambiare i colori del grafico
+# palette per cambiare i colori del grafico; IL 100 RAPPRESENTA LA GRADAZIONE DEL COLORE.
      
 cl <- colorRampPalette(c('yellow','orange','red')) (100)    
      
 plot(d,col=cl) 
      
-# esercizio  colori dal verde al blu
+# Esercizio: cambiare i colori dal verde al blu.
      
 cl <- colorRampPalette(c('green','yellow','purple','blue')) (100)
+
+# PLOTTAGGIO PER VISUALIZZARE LA MAPPA CON I COLORI MODIFICATI.
      
 plot(d,col=cl)  
      
-points(covids)     
+points(covids) 
+     
+# LINEE COSTIERE DEL MONDO; ne_10m_coastline.shp È UN'IMMAGINE CARICATA DALL'ESTERNO.
 
 coastlines <- readOGR("ne_10m_coastline.shp")
-     
-install.packages("rgdal")
-     
-library(rgdal) 
+
+# add=T AGGIUNTA DI UN OGGETTO AL GRAFICO.
      
 plot(coastlines, add=T)    
      
-# esercizio cambiare i colori alla mappa
+# esercizio cambiare i colori alla mappa.
      
 cl <- colorRampPalette(c('orange','light blue','blue','orange')) (100)
      
@@ -440,11 +459,11 @@ plot(d,col=cl)
      
 plot(coastlines, add=T, col= "black")    
      
-# Exercise 22/04/2020
+# Esercizio: creare mappa di densità con i dati covid.
      
 library(spatstat)
 
-library(rgdal) # for the coastlines
+library(rgdal) # per le coastlines.
 
 setwd("C:/lab")
 
@@ -468,15 +487,19 @@ library(sptatstat)
      
 attach(covid)
      
-covids <- ppp(lon, lat, c(-180,180), c(-90,90)) 
+covids <- ppp(lon, lat, c(-180,180), c(-90,90))
+     
+# marks PERMETTI DI ASSOCIARE I PUNTI AL POIN PATTERN.
      
 marks(covids) <- covid$cases
+     
+# Smooth(...) FUNZIONE DI INTERPOLAZIONE.
 
 s <- Smooth(covids)
      
 plot(s)
      
-# Exercise: plot(s) with points and coastlines
+# Esercizio: plottare s con i punti delle costalines.
 
 cl5 <- colorRampPalette(c('cyan', 'purple', 'red')) (200)
      
@@ -489,6 +512,8 @@ coastlines <- readOGR("ne_10m_coastline.shp")
 plot(coastlines, add=T)
      
 # mappa finale
+     
+# DUE RIGHE E UNA COLONNA.
 
 par(mfrow=c(2,1))
 
@@ -517,6 +542,8 @@ points(covids)
 coastlines <- readOGR("ne_10m_coastline.shp")
      
 plot(coastlines, add=T
+     
+# ANNULLA I PLOT PRECEDENTI.
  
 dev.off
      
@@ -536,6 +563,8 @@ attach(Tesi)
      
 summary(Tesi)
      
+# POINT PATTERN E COOORDINATE DEI PUNTI DI CAMPIONAMENTO.
+     
 Tesippp <- ppp(Longitude, Latitude, c(12.41,12.47), c(43.9,43.95)) 
      
 dT <- density(Tesippp)
@@ -544,9 +573,7 @@ plot(dT)
 
 points(Tesippp, col="black")
      
-load("sanmarino.RData")
-
-#ppp point pattern   dt density map   Tesi dataset originale       
+load("sanmarino.RData")     
      
 ls() 
      
@@ -572,7 +599,7 @@ sanmarino <- readOGR("San_Marino.shp")
      
 plot(sanmarino)
      
-plot(interpol, add=T
+plot(interpol, add=T)
      
 points(Tesippp,col="green")
  
@@ -590,7 +617,7 @@ plot(interpol, main="Estimate of species richness")
      
 points(Tesippp,col="green")
 
-#Exercise
+# Esercizio:multiframe di densità e interolazione uno accanto all'altro.
      
 par(mfrow=c(1,2))
 
@@ -610,16 +637,27 @@ points(Tesippp,col="green")
 
 # Codice r per analisi di immagini satellitari
 
-# package raster
+# pacchetto raster.
+     
+# INSTALLARE IL PACCHETTO raster.
+     
+install.packages("raster")
+     
+# RICHIAMARE raster
 
 library(raster)
 
 setwd("C:/lab")
+          
+# DEFORESTAZIONE
+# brick PERMETTE DI IMPORTARE I FILE RASTER; IMMAGINE RELATIVA ALL'ANNO 2011.
 
 p224r63_2011 <- brick("p224r63_2011_masked.grd")
 
 plot(p224r63_2011)
 
+# RIFLETTANZA
+   
 # B1: blue
 # B2: green
 # B3: red
@@ -628,7 +666,7 @@ plot(p224r63_2011)
 # B6: thermal infrared
 # B7: medium infrared
 
-# cambiamo i colori delle immagini
+# Cambiare i colori delle immagini.
 
 cl <- colorRampPalette(c('black','grey','light grey'))(100) 
 
@@ -684,17 +722,15 @@ plot(p224r63_2011$B4_sre,col=clnir)
 
 dev.off()
 
-# il pc usa RGB per restituire immagini
+# il pc usa RGB per restituire immagini; stretch=lin PERMETTE DI AMPLIARE LA GAMMA DI COLORI.
 
 plotRGB(p224r63_2011, red=3, green=2, blue=1, stretch="Lin")
-
-# nir, per utilizzarla scaliamo tutti di uno in modo tale da poter utilizzare il nir
-
-# false colours
-
+   
+# SCALARE DI UNO PER nir (4).
+     
 plotRGB(p224r63_2011, r=4, g=3, b=2, stretch="Lin")
 
-# salvataggio immagine in pdf
+# salvataggio immagine in pdf.
 
 pdf("primografico.pdf")
 
@@ -712,21 +748,27 @@ plotRGB(p224r63_2011, r=4, g=3, b=2, stretch="Lin")
 
 dev.off()
 
-# Exercise: nir nella componente  G (green)
+# Esercizio: nir nella compontente R (red).
+    
+plotRGB(p224r63_2011, r = 4, g = 3, b = 2, stretch = "Lin")
+     
+# Esercizio: nir nella compontente G (green).
 
 plotRGB(p224r63_2011, r=3, g=4, b=2, stretch="Lin")
 
-# Exercise: nir nella componente B (blue)
+# Esercizio: nir nella componente B (blue)
 
 plotRGB(p224r63_2011, r=3, g=2, b=4, stretch="Lin")
 
-# day 2
+# Giorno 2
 
 library(raster)
 
 setwd("C:/lab")
 
 load("teleril.RData")
+     
+# IMMAGINE REALTIVA ALL'ANNI 1998.
 
 p224r63_1988 <- brick("p224r63_1988_masked.grd")
 
@@ -769,11 +811,11 @@ plot(p224r63_1988$B4_sre, col=clnir)
 
 plotRGB(p224r63_1988, r=3, g=2, b=1, stretch="Lin")
 
-# Exercise plot con nir
+# Esercizio: plottare con nir
 
 plo8tRGB(p224r63_1988, r=4, g=3, b=2, stretch="Lin")
 
-# plot due immagini 1988 e 2011 per fare un confronto
+# PLOTTAGGIO DELLE DUE IMMAGINI RELATIVE AL 1988 E AL 2011 PER UN CONFRONTO DIRETTO.
 
 par(mfrow=c(2,1))
 
@@ -783,7 +825,7 @@ plotRGB(p224r63_2011, r=4, g=3, b=2, stretch="Lin", main="2011")
 
 dev.off()
 
-# spectral indices
+# INDICE SPETTRALE
 
 # dvi= nir1988-red1988
 
