@@ -278,7 +278,7 @@ carbon <- c(5, 15, 30, 70, 85, 99)
 
 plot(foram,carbon,col="green",cex=2,pch=19)
 
-#dati dall'esterno covid-19
+# dati dall'esterno covid-19.
 
 # cartella da creare su Windows c:/lab; ambiente R È ORIENTATO SU UNA DIRECTORY SPECIFICA DEL COMPUTER.
 
@@ -1150,7 +1150,7 @@ grid.arrange(grafico1, grafico2, nrow = 1)
 grafico1 <- ggplot(output, aes(x=cover, y=before, color=cover)) + geom_bar(stat="identity", fill="white") + ylim(0, 100)
 
 grafico2 <- ggplot(output, aes(x=cover, y=after, color=cover)) + geom_bar(stat="identity", fill="white") + ylim(0, 100)
- 
+
 grid.arrange(grafico1, grafico2, nrow = 1)
 
 ############################################
@@ -1163,7 +1163,8 @@ grid.arrange(grafico1, grafico2, nrow = 1)
 
 library(raster)
 
-# excercise caricare tutte le immagini
+# Esercizio: caricare tutte le immagini; IMMAGINI SALVATE ANCHE IN QUESTO CASO NELLA CARTELLA LAB. IN QUESTO CASO IL CARICAMENTO 
+# RIGUARDA UN'IMMAGINE ALLA VOLTA.
 
 EN01 <- raster("EN_0001.png")
 
@@ -1205,7 +1206,7 @@ plot(EN13, col=cl)
 
 dev.off() 
 
-# differenze
+# DIFFERENZA TRA IMMAGINE 13 E 1.
 
 difno2 <- EN13 - EN01
 
@@ -1213,7 +1214,7 @@ cldif <- colorRampPalette(c('blue','black','yellow'))(100) #
 
 plot(difno2, col=cldif)
 
-# plot di tutte le immagini
+# PLOTTAGGIO DI TUTTE E TREDICI LE IMMAGINI.
 
 par(mfrow=c(4,4))
  
@@ -1242,16 +1243,27 @@ plot(EN11, col=cl
 plot(EN12, col=cl)
 
 plot(EN13, col=cl)
- 
+
+# ESSENDO MOLTO DISPENDIOSO E SCOMODO L'IMPORTAZIONE SINGOLA DI CIASCUN FILE, È POSSIBILE ANCHE L'IMPORTAZIONE SIMULTANEA DI TUTTI 
+# I FILE.
+
+# PRIMA DI PROCEDERE SI CREA UN'APPOSITA SOTTOCARTELLA ALL'INTERNO DELLA CARTELLA LAB, DENTRO CUI SI INSERISCONO TUTTI I 13 FILE.
+
 setwd("C:/lab/")
+
+# SUCCESSIVAMENTE SI CAMBIA IL SETTAGGIO DELLA WORKING DIRECTORY IMPOSTANDOLO SULLA NUOVA SOTTOCARTELLA DENOMINATA esa_no2.
      
 setwd("C:/lab/esa_no2/")
 
+# rlist PERMETTE DI OSSERVARE TUTTA LISTA CONTENENTE I FILE CON ESTENSIONE .png.
+
 rlist <- list.files(pattern=".png")
      
-# per caricare immagini in una volta
+# PER IL CARICAMENTO SIMULTANEO SI UTTILIZA LA FUNZIONE lapply.
      
 listafinale <- lapply(rlist, raster)
+
+# CON stack PIÙ VETTORI IN UN SINGOLO VETTORE.
      
 EN <- stack(listafinale)
      
@@ -1265,6 +1277,8 @@ rlist <- list.files(pattern=".png")
       
 EN <- stack(listafinale)
 
+# DIFFERENZA PIXEL IMMAGINE 13 E 1.
+
 difEN <- EN$EN_0013 - EN$EN_0001
  
 cld <- colorRampPalette(c('blue','white','red'))(100) # 
@@ -1274,12 +1288,18 @@ plot(difEN, col=cld)
 cl <- colorRampPalette(c('red','orange','yellow'))(100) #
  
 plot(EN, col=cl)
+
+# RANGE DATI CON MEDIA E MEDIANA.
  
 boxplot(EN)
  
 boxplot(EN, horizontal=T)
- 
+
+# ELIMINAZIONE DEI PUNTI CHE SI DISCOSTANO DALLA MEDIA.
+
 boxplot(EN, horizontal=T,outline=F)
+
+# CON axes AGGIUNTA ASSI.
  
 boxplot(EN, horizontal=T,outline=F,axes=T)
 
@@ -1289,11 +1309,19 @@ boxplot(EN, horizontal=T,outline=F,axes=T)
        
 9. R_code_snow.r 
 
+# COPERTURA NEVOSA
+
 setwd("C:/lab/")
+
+# INSTALLAZIONE PACCHETTO ncdf4.
 
 install.packages("ncdf4")
 
+# RICHIAMARE LIBRERIA ncdfr.
+
 library(ncdf4)
+
+# RICHIAMARE LIBRERIA raster.
 
 library(raster)
 
@@ -1302,6 +1330,8 @@ snowmay <- raster("c_gls_SCE500_202005180000_CEURO_MODIS_V1.0.1.nc")
 cl <- colorRampPalette(c('darkblue','blue','light blue'))(100)
  
 plot(snowmay,col=cl)
+
+# CAMBIARE IL SETTAGGIO DELLA WORKING DIRECTORY IMPOSTANDOLO SULLA SOTTOCARTELLA snow ALL'INTERNO DELLA CARTELLA LAB.
 
 setwd("C:/lab/snow/")
 
@@ -1335,13 +1365,13 @@ plot(difsnow, col=cldiff)
 
 plot(snow)
 
-# previsione 2025
+# PREVISIONE ANNO 2025
 
 source("prediction.r")
 
-# essendo molto lento posso caricare direttamente il file predicted snow
+# ESSENDO MOLTO LENTO POSSO CARICARE DIRETTAMENTE IL FILE CHIAMATO predicted snow.
 
-# per interrompere source premere esc
+# PER INTERROMPERE L'IMPOSRTAZIONE PREMERE esc.
 
 predicted.snow.2025.norm <- raster("predicted.snow.2025.norm.tif")
  
