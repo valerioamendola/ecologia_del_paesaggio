@@ -269,7 +269,7 @@ bubble(meuse,"zinc")
 
 bubble(meuse,"copper",col="red")
 
-# foraminiferi (Sofia), carbon capture)
+# foraminiferi (Sofia), carbon capture.
 #array; CREAZIONE DI UN VETTORE; LA LETTERA c RAPPRESENTA IL TERMINE CONCATENATE E LA FRECCIA SERVE AD ATTRIBUIRE IL NOME. 
 
 foram<-c(10, 20, 35, 55, 67, 80)
@@ -293,7 +293,7 @@ read.table("covid_agg.csv",head=TRUE)
 
 covid <- read.table("covid_agg.csv",head=TRUE)
 
-# L'ERRORE ERA DOVUTO ALLA PRESENZA DI VIRGOLETTE NEL FILE EXCEL, FILL=TRUE FORZAVA MA NON RISOLVEVA IL PROBLEMA.
+# L'ERRORE ERA DOVUTO ALLA PRESENZA DI VIRGOLETTE NEL FILE EXCEL, fill=TRUE FORZAVA MA NON RISOLVEVA IL PROBLEMA.
 
 ############################################
 ############################################
@@ -382,7 +382,7 @@ ggplot(covid,aes(x=lon,y=lat,size=cases)) + geom_point()
 
 attach(covid)
 
-#  IL COMANDO ppp PERMETTE DI CONVERTIRE I DATI IN UN POINT PATTERN.    
+# IL COMANDO ppp PERMETTE DI CONVERTIRE I DATI IN UN POINT PATTERN.    
      
 covids <- ppp(lon, lat, c(-180,180), c(-90,90))
      
@@ -392,7 +392,7 @@ d <- density(covids)
 
 plot(d)
      
-# FUNZIOE PER DISEGNARE UNA SEQUENZA DI PUNTI.
+# FUNZIONE PER DISEGNARE UNA SEQUENZA DI PUNTI.
      
 points(covids)
 
@@ -451,7 +451,7 @@ coastlines <- readOGR("ne_10m_coastline.shp")
      
 plot(coastlines, add=T)    
      
-# esercizio cambiare i colori alla mappa.
+# Esercizio cambiare i colori alla mappa.
      
 cl <- colorRampPalette(c('orange','light blue','blue','orange')) (100)
      
@@ -489,11 +489,11 @@ attach(covid)
      
 covids <- ppp(lon, lat, c(-180,180), c(-90,90))
      
-# marks PERMETTI DI ASSOCIARE I PUNTI AL POIN PATTERN.
+# marks PERMETTI DI ASSOCIARE I PUNTI DEL POINT PATTERN.
      
 marks(covids) <- covid$cases
      
-# Smooth(...) FUNZIONE DI INTERPOLAZIONE.
+# Smooth(...) FUNZIONE DI INTERPOLAZIONE DEI DATI.
 
 s <- Smooth(covids)
      
@@ -506,6 +506,8 @@ cl5 <- colorRampPalette(c('cyan', 'purple', 'red')) (200)
 plot(s, col=cl5, main="density")
 
 points(covids)
+     
+# readOGR PERMETTE DI LEGGERE DATI OGR (TIPI DI DATI VETTORIALI).
      
 coastlines <- readOGR("ne_10m_coastline.shp")
 
@@ -587,7 +589,11 @@ head(Tesi)
      
 marks(Tesippp) <- Tesi$Species_richness
      
+# INTERPOLAZIONE DATI RICCHEZZA SPECIFICA DI SPECIE.
+     
 interpol <- Smooth(Tesippp)
+     
+# GRAFICO RAPPRESENTANTE L'INTERPOLAZIONE.
      
 plot(interpol)
      
@@ -605,7 +611,7 @@ points(Tesippp,col="green")
  
 plot(sanmarino,add=T)
 
-#Exercise plot multiframe di densità e interpolazione 
+#Esercizio: plot multiframe di densità e interpolazione 
      
 par(mfrow=c(2,1))
      
@@ -617,7 +623,7 @@ plot(interpol, main="Estimate of species richness")
      
 points(Tesippp,col="green")
 
-# Esercizio:multiframe di densità e interolazione uno accanto all'altro.
+# Esercizio:multiframe di densità e interolazione uno a fianco all'altro.
      
 par(mfrow=c(1,2))
 
@@ -768,7 +774,7 @@ setwd("C:/lab")
 
 load("teleril.RData")
      
-# IMMAGINE REALTIVA ALL'ANNI 1998.
+# IMMAGINE REALTIVA ALL'ANNO 1988.
 
 p224r63_1988 <- brick("p224r63_1988_masked.grd")
 
@@ -825,7 +831,7 @@ plotRGB(p224r63_2011, r=4, g=3, b=2, stretch="Lin", main="2011")
 
 dev.off()
 
-# INDICE SPETTRALE
+# INDICE SPETTRALE; DVI STA PER DIFFERENCE VEGETATION INDEX.
 
 # dvi= nir1988-red1988
 
@@ -833,7 +839,7 @@ dvi1988 <- p224r63_1988$B4_sre - p224r63_1988$B3_sre
 
 plot(dvi1988)
 
-# Excercise dvi 2011
+# Esercizio: calcolo del dvi del 2011.
 
 dvi2011 <- p224r63_2011$B4_sre - p224r63_2011$B3_sre
 
@@ -843,7 +849,7 @@ cldvi <- colorRampPalette(c('light blue','light green','green'))(100)
 
 plot(dvi2011, col=cldvi)
 
-# multitemporl analysis
+# Analisi multitemporale.
 
 difdvi<- dvi2011 - dvi1988
 
@@ -853,9 +859,9 @@ cldifdvi <- colorRampPalette(c('red','white','blue'))(100)
 
 plot(difdvi, col=cldifdvi)
 
-# visualize the output
+# Visualizzazione dell'output
 
-# multiframe 1988RGB  2011RGB difdiv 
+# multiframe 1988RGB  2011RGB (difdiv) 
 
 par(mfrow=c(3,1))
 
@@ -867,7 +873,7 @@ plot(difdvi, col=cldifdvi)
  
 dev.off()
 
-# changing the grain
+# aggregate(...) PERMETTE DI VARIARE LA GRANA DELL'IMMAGINE; IMPOSTANDO fact=10 I PIXEL AUMENTANO DI DIECI VOLTE.
 
 p224r63_2011lr <- aggregate(p224r63_2011, fact=10)
 
@@ -881,7 +887,7 @@ plotRGB(p224r63_2011, r=4, g=3, b=2, stretch="Lin")
 
 plotRGB(p224r63_2011lr, r=4, g=3, b=2, stretch="Lin")
 
-# lower resolution
+# RISOLUZIONE ANCORA PIÙ BASSA.
 
 p224r63_2011lr50 <- aggregate(p224r63_2011, fact=50)
 
@@ -894,25 +900,29 @@ plotRGB(p224r63_2011lr, r=4, g=3, b=2, stretch="Lin")
 plotRGB(p224r63_2011lr50, r=4, g=3, b=2, stretch="Lin")
 
 dev.off()
-
-# dvi2011 low resolution
+     
+# dvi2011 bassa risoluzione.
 
 dvi2011lr50 <- p224r63_2011lr50$B4_sre - p224r63_2011lr50$B3_sre
 
 plot(dvi2011lr50)
 
-# dvi1988 low resolution 
+# dvi1988 bassa risoluzione.
 
 p224r63_1988lr50 <- aggregate(p224r63_1988, fact=50)
  
 dvi1988lr50 <- p224r63_1988lr50$B4_sre - p224r63_1988lr50$B3_sre
 
+# DIFFERENZA DI DVI CON BASSA RISOLUZIONE.     
+     
 difdvilr50 <- dvi2011lr50 - dvi1988lr50
 
 plot(dvi1988lr50)
 
 plot(difdvilr50,col=cldifdvi)
 
+# MULTIFRAME CON DVI A BASSA RISOLUZIONE.    
+     
 par(mfrow=c(2,1))
 
 plot(difdvi, col=cldifdvi)
@@ -925,17 +935,29 @@ plot(difdvilr50, col=cldifdvi)
 
 6. R_code_landcover.r  
     
-# R code landcover
+# CODICE R LANDCOVER.
 
+# RICHIAMARE LIBRERIA raster.
+     
 libray(raster)
 
+# INSTALLARE LIBRERIA RStoolbox
+     
+install.packages("RStoolbox").
+
+# RICHIAMARE LIBRERIA RStoolbox.     
+     
 library(RStoolbox)
 
 setwd("c:/lab")
+     
+# IMPORTARE IL FILE RASTER.
 
 p224r63_2011 <- brick("p224r63_2011_masked.grd
 
 plotRGB(p224r63_2011, r=4, g=3, b=2, stretch="Lin")
+
+# unsuperClass RAPPRESENTA LA CLASSIFICAZIONE NON SUPERVISIONATA.
 
 p224r63_2011c <- unsuperClass(p224r63_2011, nClasses=4)
 
@@ -947,7 +969,7 @@ clclass <- colorRampPalette(c('green', 'red', 'blue', 'black'))(100)
 
 plot(p224r63_2011c$map, col=clclass)
  
-# esperimento per vedere la sensibilità rispetto al numero di classi
+# ESPERIMENTO PER VEDERE LA SENSIBILITÀ RISPETTO AL NUMERO DI CLASSI; IN QUESTO CASO SI RIDUCE IL NUMERO DI CLASSI. 
 
 p224r63_2011c <- unsuperClass(p224r63_2011, nClasses=2)
   
@@ -959,25 +981,48 @@ plot(p224r63_2011c$map)
    
 7. R_code_multitemp.r  
 
-# Analisi multitemporale variazione della land cover
+# Analisi multitemporale variazione della land cover.
 
 setwd("C:/lab/")
+
+# RICHIAMARE LA LIBRERIA raster.
  
 library(raster)
 
+RICHIAMARE LA LIBRERIA RStoolbox.
+
 library(RStoolbox)
+
+# RICHIAMARE LA LIBRERIA ggplot2
 
 library(ggplot2)
 
+# INSTALLARE PACCHETTO gridExtra.
+
+install.packages("gridExtra")
+
+# RICHIAMARE LIBRERIA gridExtra.
+
 library(gridExtra)
- 
+
+# IMPORTAZIONE IMMAGINI.
+
 defor1 <- brick("defor1_.jpg")
  
 defor2 <- brick("defor2_.jpg")
  
 plotRGB(defor1, r=1, g=2, b=3, stretch="Lin")
- 
-# excercise
+
+# PER VISUALIZZARE IL NOME DEI CAMPI DELL'OGGETTO. IN ALTERNATIVA names(...)
+
+defor1
+
+# names: defor1_.1, defor1_.2, defor1_.3 
+# defor1_.1 = NIR
+# defor1_.2 = red
+# defor1_.3 = green
+
+# Esercizio: plot della seconda data.
  
 plotRGB(defor2, r=1, g=2, b=3, stretch="Lin")
  
@@ -997,11 +1042,21 @@ cl <- colorRampPalette(c('black','green'))(100)
 
 plot(d1c$map, col=cl)
 
+# possibilità 2
+
+cl <- colorRampPalette(c('green','black'))(100) # 
+
+plot(d1c$map, col=cl)
+
+# classificazione di defor2.
+
+# Esercizio: classificare con due classi l'immagine satellitare defor2.
+
 d2c <- unsuperClass(defor2, nClasses=2)
 
 plot(d2c$map, col=cl)
 
-# per annullare la mappa e vederle insieme
+# PER ANNULLARE LE MAPPE E VEDERLE INSIEME.
 
 dev.off()
  
@@ -1017,15 +1072,19 @@ plot(d1c$map, col=cl)
 
 plot(d2c$map, col=cl)
 
+# freq PERMETTE DI VEDERE LA FREQUENZA DI PIXEL.
+
 freq(d1c$map)
 
-# 1) 308038   2) 33254   # tot = 341284 
+# 1) 308038   2) 33254   # tot = 341284 ; SOMMARE PER OTTENERE IL NUMERO MAX DI PIXEL DELLA PRIMA IMMAGINE.
 
 totd1<- 33254 + 308038
 
-# percentuale  foresta 90.26     aree aperte 9.8
+# PERCENTUALE FORESTA: 90.26     AREE APERTE: 9.8
 
 percent1 <- freq(d1c$map) * 100 / totd1
+
+# FREQUENZA PIXEL IMMAGINE 2.
 
 freq(d2c$map)
 
@@ -1033,17 +1092,26 @@ freq(d2c$map)
 
 totd2<- 178381 + 164345
 
-# percentuale  foresta 52.05     aree aperte 47.95
+# PERCENTUALE FORESTA: 52.05     AREE APERTE: 47.95; 
+# DA QUESTI VALORI SI EVINCE PURTROPPO UN FENOMENO MOLTO ACCENTUATO DI DEFORESTAZIONE NEL CORSO DEGLI ANNI.
 
 percent2 <- freq(d2c$map) * 100 / totd2
+
+# ANALISI GRAFICA VETTORIALE DELLA LANDCOVER IN BASE AI VALORI OTTENUTI.
 
 cover <- c("Agriculture","Forest")
  
 cover <- c("Agriculture","Forest")
 
+# VALORI PRECEDENTI ALLA DEFORESTAZIONE ASSOCIATI AL TERMINE before.
+
 before <- c(9.8,90.26)
 
+# VALORI SUCCESSIVI ALLA DEFORESTAZIONE ASSOCIATI AL TERMINE after.
+
 after <- c(47.95,52.05)
+
+# DATAFRAME ATTRAVERSO I DATI PRECEDENTI.
 
 output <- data.frame(cover,before,after)
  
@@ -1059,25 +1127,21 @@ plot(d1c$map, col=cl)
         
 plot(d2c$map, col=cl)
 
-# istogrammi % prima della deforestazione 
+# ISTOGRAMMI % PRIMA DELLA DEFORESTAZIONE. 
 
-ggplot(output, aes(x=cover, y=before, color=cover)) +
-        
-geom_bar(stat="identity", fill="white")
+ggplot(output, aes(x=cover, y=before, color=cover)) + geom_bar(stat="identity", fill="white")
 
-# excerise   dopo la deforestazione
+# Eserciio: fare lo stesso per il periodo successivo alla deforestazione.
 
-ggplot(output, aes(x=cover, y=after, color=cover)) +
-        
-geom_bar(stat="identity", fill="white")
- 
-install.packages("gridExtra") 
+ggplot(output, aes(x=cover, y=after, color=cover)) + geom_bar(stat="identity", fill="white")
+
+# ATTRIBUIZIONE DEL NOME grafico 1 e grafico 2.
         
 grafico1 <- ggplot(output, aes(x=cover, y=before, color=cover)) + geom_bar(stat="identity", fill="white")
 
 grafico2 <- ggplot(output, aes(x=cover, y=after, color=cover)) + geom_bar(stat="identity", fill="white")
         
-# uso di grid.arrange per il plot dei due grafici
+# grid.arrange PERMETTE IL PLOTTAGGIO DEI DUE GRAFICI NELLA STESSA FINESTRA.
 
 grid.arrange(grafico1, grafico2, nrow = 1)
 
