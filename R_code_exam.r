@@ -58,6 +58,7 @@ summary(meuse)
 
 # LA FUNZIONE pairs PERMETTE DI OTTENERE UN GRAFICO CHE CONTIENE I VARI PLOT CHE MOSTRANO GRAFICAMENTE LE CORRELAZIONI TRA LE VARIABILI.
 # IN QUESTO CASO SI TRATTA DI UN NUMERO LIMITATO DI VARIABILI. 
+
 pairs(meuse)
 
 # ~ È UN SIMBOLO CHE IN R RAPPRESENTA IL SIMBOLO = ; IN QUESTO CASO VENGONO MESSE IN RELAZIONE I VARI ELEMENTI, UTILIZZANDO
@@ -402,7 +403,7 @@ q()
      
 # seconda parte 
      
-# INSTALLAZIONE DELLA LIBRERIA rgdal     
+# INSTALLAZIONE DELLA LIBRERIA rgdal.    
      
 install.packages("rgdal")
      
@@ -443,7 +444,7 @@ plot(d,col=cl)
      
 points(covids) 
      
-# LINEE COSTIERE DEL MONDO; ne_10m_coastline.shp È UN'IMMAGINE CARICATA DALL'ESTERNO.
+# LINEE COSTIERE DEL MONDO; ne_10m_coastline.shp È UN'IMMAGINE CARICATA DALL'ESTERNO, SALVATA PRECEDENTEMENTE NELLA CARTELLA lab.
 
 coastlines <- readOGR("ne_10m_coastline.shp")
 
@@ -589,7 +590,7 @@ head(Tesi)
      
 marks(Tesippp) <- Tesi$Species_richness
      
-# INTERPOLAZIONE DATI RICCHEZZA SPECIFICA DI SPECIE.
+# INTERPOLAZIONE DEI DATI DI RICCHEZZA SPECIFICA.
      
 interpol <- Smooth(Tesippp)
      
@@ -686,7 +687,7 @@ names(p224r63_2011)
 
 clb <- colorRampPalette(c('dark blue','blue','light blue'))(100)
 
-# attach non funziona col pacchetto raster, si usa il $
+# attach NON FUNZIONA COL PACCHETTO raster E DUNQUE SI USA $
 
 plot(p224r63_2011$B1_sre,col=clb)
 
@@ -941,7 +942,7 @@ plot(difdvilr50, col=cldifdvi)
      
 libray(raster)
 
-# INSTALLARE LIBRERIA RStoolbox
+# INSTALLARE LIBRERIA RStoolbox.
      
 install.packages("RStoolbox").
 
@@ -1145,7 +1146,7 @@ grafico2 <- ggplot(output, aes(x=cover, y=after, color=cover)) + geom_bar(stat="
 
 grid.arrange(grafico1, grafico2, nrow = 1)
 
-# spiegare al software il limite di y a 100
+# spiegare al software il limite di y a 100.
 
 grafico1 <- ggplot(output, aes(x=cover, y=before, color=cover)) + geom_bar(stat="identity", fill="white") + ylim(0, 100)
 
@@ -1163,8 +1164,8 @@ grid.arrange(grafico1, grafico2, nrow = 1)
 
 library(raster)
 
-# Esercizio: caricare tutte le immagini; IMMAGINI SALVATE ANCHE IN QUESTO CASO NELLA CARTELLA LAB. IN QUESTO CASO IL CARICAMENTO 
-# RIGUARDA UN'IMMAGINE ALLA VOLTA.
+# Esercizio: caricare tutte le immagini; IMMAGINI SALVATE ANCHE IN QUESTO CASO NELLA CARTELLA LAB. IL CARICAMENTO RIGUARDA UN'IMMAGINE 
+# ALLA VOLTA.
 
 EN01 <- raster("EN_0001.png")
 
@@ -1249,10 +1250,10 @@ plot(EN13, col=cl)
 
 # PRIMA DI PROCEDERE SI CREA UN'APPOSITA SOTTOCARTELLA ALL'INTERNO DELLA CARTELLA LAB, DENTRO CUI SI INSERISCONO TUTTI I 13 FILE.
 
-setwd("C:/lab/")
-
 # SUCCESSIVAMENTE SI CAMBIA IL SETTAGGIO DELLA WORKING DIRECTORY IMPOSTANDOLO SULLA NUOVA SOTTOCARTELLA DENOMINATA esa_no2.
-     
+
+setwd("C:/lab/")     
+
 setwd("C:/lab/esa_no2/")
 
 # rlist PERMETTE DI OSSERVARE TUTTA LISTA CONTENENTE I FILE CON ESTENSIONE .png.
@@ -1331,7 +1332,7 @@ cl <- colorRampPalette(c('darkblue','blue','light blue'))(100)
  
 plot(snowmay,col=cl)
 
-# CAMBIARE IL SETTAGGIO DELLA WORKING DIRECTORY IMPOSTANDOLO SULLA SOTTOCARTELLA snow ALL'INTERNO DELLA CARTELLA LAB.
+# CAMBIARE IL SETTAGGIO DELLA WORKING DIRECTORY IMPOSTANDOLO SULLA SOTTOCARTELLA snow ALL'INTERNO DELLA CARTELLA lab.
 
 setwd("C:/lab/snow/")
 
@@ -1344,6 +1345,7 @@ list_rast=lapply(rlist, raster)
 snow.multitemp <- stack(list_rast)
 
 par(mfrow=c(1,2))
+
 # IN QUESTO CASO I VALORI NELLA LEGENDA SONO DIVERSI.
 
 plot(snow.multitemp$snow2000r, col=cl)
@@ -1374,7 +1376,7 @@ source("prediction.r")
 
 # ESSENDO MOLTO LENTO POSSO CARICARE DIRETTAMENTE IL FILE CHIAMATO predicted snow.
 
-# PER INTERROMPERE L'IMPOSRTAZIONE PREMERE esc.
+# PER INTERROMPERE L'IMPORTAZIONE PREMERE esc.
 
 predicted.snow.2025.norm <- raster("predicted.snow.2025.norm.tif")
  
