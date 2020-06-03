@@ -310,9 +310,11 @@ install.packages("ggplot2")
 
 install.packages("spatstat")
 
-# SI RICHIAMANO LE LIBRERIE CHE SERVONO.
+# RICHIAMARE LA LIBRERIA spatstat.
 
 library(spatstat)
+
+# RICHIAMARE LA LIBRERIA ggplot2
 
 library(ggplot2)
 
@@ -322,7 +324,7 @@ setwd("C:/lab")
 
 covid <- read.table("covid_agg.csv", head=T)
 
-# per visualizzare le prime righe
+# per visualizzare le prime righe.
 
 head(covid)
 
@@ -490,7 +492,7 @@ attach(covid)
      
 covids <- ppp(lon, lat, c(-180,180), c(-90,90))
      
-# marks PERMETTI DI ASSOCIARE I PUNTI DEL POINT PATTERN.
+# marks PERMETTE DI ATTRIBUIRE VALORI AI DATI DEL POINT PATTERN ASSOCIATI ALLA COLONNA cases.
      
 marks(covids) <- covid$cases
      
@@ -1164,7 +1166,7 @@ grid.arrange(grafico1, grafico2, nrow = 1)
 
 library(raster)
 
-# Esercizio: caricare tutte le immagini; IMMAGINI SALVATE ANCHE IN QUESTO CASO NELLA CARTELLA LAB. IL CARICAMENTO RIGUARDA UN'IMMAGINE 
+# Esercizio: caricare tutte le immagini; IMMAGINI SALVATE ANCHE IN QUESTO CASO NELLA CARTELLA lab. IL CARICAMENTO RIGUARDA UN'IMMAGINE 
 # ALLA VOLTA.
 
 EN01 <- raster("EN_0001.png")
@@ -1248,9 +1250,9 @@ plot(EN13, col=cl)
 # ESSENDO MOLTO DISPENDIOSO E SCOMODO L'IMPORTAZIONE SINGOLA DI CIASCUN FILE, È POSSIBILE ANCHE L'IMPORTAZIONE SIMULTANEA DI TUTTI 
 # I FILE.
 
-# PRIMA DI PROCEDERE SI CREA UN'APPOSITA SOTTOCARTELLA ALL'INTERNO DELLA CARTELLA LAB, DENTRO CUI SI INSERISCONO TUTTI I 13 FILE.
+# PRIMA DI PROCEDERE SI CREA UN'APPOSITA SOTTOCARTELLA ALL'INTERNO DELLA CARTELLA lab, DENTRO CUI SI INSERISCONO TUTTI I 13 FILE.
 
-# SUCCESSIVAMENTE SI CAMBIA IL SETTAGGIO DELLA WORKING DIRECTORY IMPOSTANDOLO SULLA NUOVA SOTTOCARTELLA DENOMINATA esa_no2.
+# SUCCESSIVAMENTE SI CAMBIA IL SETTAGGIO DELLA WORKING DIRECTORY, IMPOSTANDOLO SULLA NUOVA SOTTOCARTELLA DENOMINATA esa_no2.
 
 setwd("C:/lab/")     
 
@@ -1264,7 +1266,7 @@ rlist <- list.files(pattern=".png")
      
 listafinale <- lapply(rlist, raster)
 
-# CON stack PIÙ VETTORI IN UN SINGOLO VETTORE.
+# CON stack UNIONE DI BANDE E CREAZIONE DI UN PACCHETTO DI DATI.
      
 EN <- stack(listafinale)
      
@@ -1390,11 +1392,11 @@ plot(predicted.snow.2025.norm, col=cl)
 
 setwd("C:/lab/")
 
-# CARICARE LIBRERIA raster
+# CARICARE LIBRERIA raster.
 
 library(raster)
 
-# CARICARE LIBRERIA ggplot2
+# CARICARE LIBRERIA ggplot2.
 
 library(ggplot2)
 
@@ -1432,7 +1434,7 @@ plot(d1c,col=cl)
 
 plot(d2c,col=cl)
                       
-# ANNULLARE I VALORI RELATIVI ALL'AGRICOLTURA; reclassify PERMETTE DI TRASFORMARE LA CLASSE 1 IN NA.                     
+# ANNULLARE I VALORI RELATIVI ALL'AGRICOLTURA; reclassify PERMETTE DI TRASFORMARE LA CLASSE 1 IN NA (INDICATORE DI VALORE MANCANTE).                     
 
 d1c.for <- reclassify(d1c, cbind(1,NA))
 
