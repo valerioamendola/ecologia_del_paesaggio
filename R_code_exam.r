@@ -2,16 +2,17 @@
 
 # LISTA DEI CODICI:
 
-1. R_code_first.r   
-2. R_code_spatial.r   
-3. R_code_spatial2.r
-4. R_code_point_pattern   
-5. R_code_teleril.r   
-6. R_code_landcover.r   
-7. R_code_multitemp.r   
-8. R_code_multitemp_NO2.r   
-9. R_code_snow.r   
-10. R_code_patches.r  
+# 1. R_code_first.r   
+# 2. R_code_spatial.r   
+# 3. R_code_spatial2.r
+# 4. R_code_point_pattern   
+# 5. R_code_teleril.r   
+# 6. R_code_landcover.r   
+# 7. R_code_multitemp.r   
+# 8. R_code_multitemp_NO2.r   
+# 9. R_code_snow.r   
+# 10. R_code_patches.r  
+# 11. R_code_crop.r
 
 ############################################
 ############################################
@@ -176,7 +177,7 @@ plot(cadmium, copper, pch=17, col="green", main="primo plot", xlab="cadmio", yla
 ############################################
 ############################################
  
-2. R_code_spatial.r  
+# 2. R_code_spatial.r  
 
 # R spaziale: funzioni spaziali in Ecologia del paesaggio
 
@@ -234,7 +235,7 @@ spplot(mesue,"zinc")
 ############################################
 ############################################
  
-3. R_code_spatial2.r
+# 3. R_code_spatial2.r
 
 # R spatial
 
@@ -300,7 +301,7 @@ covid <- read.table("covid_agg.csv",head=TRUE)
 ############################################
 ############################################
  
-4. R_code_point_pattern 
+# 4. R_code_point_pattern 
 
 # INSTALLAZIONE DEL PACCHETTO ggplot2.
 
@@ -642,7 +643,7 @@ points(Tesippp,col="green")
 ############################################
 ############################################
  
-5. R_code_teleril.r 
+# 5. R_code_teleril.r 
 
 # Codice r per analisi di immagini satellitari
 
@@ -936,7 +937,7 @@ plot(difdvilr50, col=cldifdvi)
 ############################################
 ############################################    
 
-6. R_code_landcover.r  
+# 6. R_code_landcover.r  
     
 # CODICE R LANDCOVER.
 
@@ -982,7 +983,7 @@ plot(p224r63_2011c$map)
 ############################################
 ############################################    
    
-7. R_code_multitemp.r  
+# R_code_multitemp.r  
 
 # Analisi multitemporale variazione della land cover.
 
@@ -1160,7 +1161,7 @@ grid.arrange(grafico1, grafico2, nrow = 1)
 ############################################
 ############################################  
 
-8. R_code_multitemp_NO2.r  
+# 8. R_code_multitemp_NO2.r  
 
 # codice per analisi ESA cambiamento NO2 da gennaio a marzo 2020
 
@@ -1214,7 +1215,6 @@ dev.off()
 difno2 <- EN13 - EN01
 
 cldif <- colorRampPalette(c('blue','black','yellow'))(100) #
-
 plot(difno2, col=cldif)
 
 # PLOTTAGGIO DI TUTTE E TREDICI LE IMMAGINI.
@@ -1271,7 +1271,6 @@ listafinale <- lapply(rlist, raster)
 EN <- stack(listafinale)
      
 cl <- colorRampPalette(c('red','orange','yellow'))(100) #
-     
 plot(EN, col=cl)
      
 setwd("C:/lab/esa_no2")
@@ -1310,7 +1309,7 @@ boxplot(EN, horizontal=T,outline=F,axes=T)
 ############################################
 ############################################  
        
-9. R_code_snow.r 
+# 9. R_code_snow.r 
 
 # COPERTURA NEVOSA
 
@@ -1338,7 +1337,7 @@ plot(snowmay,col=cl)
 
 setwd("C:/lab/snow/")
 
-# per importarli tutti insieme
+# per importarli tutti insieme; IMPOSTARE L'ESTENSIONE .tif
 
 rlist=list.files(pattern=".tif")
 
@@ -1388,7 +1387,7 @@ plot(predicted.snow.2025.norm, col=cl)
 ############################################
 ############################################
 
-10. R_code_patches.r
+# 10. R_code_patches.r
 
 setwd("C:/lab/")
 
@@ -1502,6 +1501,84 @@ ggplot(output, aes(x=time, y=npatches, color="red")) + geom_bar(stat="identity",
 ############################################
 ############################################
 
+# 11. R_code_crop.r
+
+# RICHIAMARE LA LIBRERIA raster.
+
+library(raster)
+                                          
+setwd("C:/lab/snow")
+                     
+# Esercizio: caricare le immagini snow.
+                     
+# IN QUESTO CASO COME PATTERN INSERIAMO snow PER METTERE AL SOFTWARE DI RICONOSCERE SOLO I FILE CHE LO CONTENGONO.
+
+rlist <- list.files(pattern="snow")
+                     
+rlist
+                                          
+list_rast <- lapply(rlist, raster)
+                     
+snow.multitemp <- stack(list_rast)
+                     
+clb <- colorRampPalette(c('dark blue','blue','light blue'))(100) # 
+plot(snow.multitemp,col=clb)
+                     
+# PER VEDERE I NOMI
+                     
+snow.multitemp
+                     
+plot(snow.multitemp$snow2010r, col=clb)
+
+# zoom
+                     
+# INDICARE L'ESTENSIONE CORRETTA PER CONCENTRARCI SULL'ITALIA; IN QUESTO CASO MANCA ANCORA QUALCHE GRADO RIGUARDANTE L'ITALIA
+# MERIDIONALE. 
+                     
+extension <- c(6, 18, 40, 50)
+                     
+# UTILIZZO FUNZIONE zoom PER APPLICARE L'INGRANDIMENTO 
+                     
+zoom(snow.multitemp$snow2010r, ext=extension)
+                     
+# CAMBIAREO L'ESTENSIONE.
+                     
+extension <- c(6, 20, 35, 50)
+                     
+# PLOTTANDO NUOVAMENTE CON LA NUOVA ESTENSIONE, OTTENIAMO L'IMMAGINE INTERA DELL'ITALIA.                     
+                     
+zoom(snow.multitemp$snow2010r, ext=extension) 
+                     
+# RILANCIARE IL PLOT DELL'IMMAGINE ORIGINALE.                     
+                  
+plot(snow.multitemp$snow2010r, col=clb)                    
+
+# PER FARE UN RETTANGOLO A MANO.                    
+   
+zoom(snow.multitemp$snow2010r, ext=drawExtent())
+                      
+# FUNZIONE crop PERMETTE DI OTTENERE L'IMMAGINE RITAGLIATA.
+                    
+snow2010r.italy <- crop(snow.multitemp$snow2010r, extension)
+                     
+plot(snow2010r.italy, col=clb)
+                     
+# Esercizio: eseguire crop dell'Italia con stack intero.
+                     
+# IN QUESTO CASO LE LEGENDE SONO DIVERSE
+                     
+snow.multitemp.italy <- crop(snow.multitemp, extension)
+ 
+plot(snow.multitemp.italy, col=clb)
+                     
+# PER UNIFORMARE LA LEGENDA
+                     
+plot(snow.multitemp.italy, col=clb, zlim=c(20,200))
+
+# ATTRAVERSO IL boxplot SI PUÒ NOTARE COME IL VALORE MASSIMO DI COPERTURA NEVOSA TENDE A DIMINUIRE CON IL PASSARE DEL TEMPO.              
+                     
+boxplot(snow.multitemp.italy, horizontal=T,outline=F)
+                      
 # LINK PER IL SITO COPERNICUS
 
 https://land.copernicus.vgt.vito.be/PDF/portal/Application.html
