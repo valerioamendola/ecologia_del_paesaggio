@@ -13,6 +13,8 @@
 # 9. R_code_snow.r   
 # 10. R_code_patches.r  
 # 11. R_code_crop.r
+# 12. Species Distribution Modelling
+# 13. Exam project
 
 ############################################
 ############################################
@@ -187,7 +189,7 @@ plot(cadmium, copper, pch=17, col="green", main="primo plot", xlab="cadmio", yla
 
 install.packages("GGally")
 
- # RICHIAMARE LA LIBRERIA GGally.
+# RICHIAMARE LA LIBRERIA GGally.
 
 library(GGally)
 
@@ -1584,7 +1586,121 @@ plot(snow.multitemp.italy, col=clb, zlim=c(20,200))
 # ATTRAVERSO IL boxplot SI PUÒ NOTARE COME IL VALORE MASSIMO DI COPERTURA NEVOSA TENDE A DIMINUIRE CON IL PASSARE DEL TEMPO.              
                      
 boxplot(snow.multitemp.italy, horizontal=T,outline=F)
+                     
+############################################
+############################################
+############################################                     
+                     
+# 12. Species Distribution Modelling                     
+                     
+# IN QUESTO CASO NESSUN SETTAGGIO, MA SI UTLIZZANO DATI INTERNI AL PACCHETTO sdm.
+                     
+# INSTALLARE IL PACCHETTO sdm.                  
+                     
+install.packages("sdm")
+                     
+# RICHIAMARE LIBRERIA sdm.   
+                     
+library(sdm)
+
+# RICHIAMARE LIBRERIA raster                     
+                     
+library(raster)
+
+# RICHIAMARE LIBRERIA rgdal.                     
+                     
+library(rgdal)
+                     
+# FUNZIONE system.file PERMETTE DI                       
+
+file <- system.file("external/species.shp", package="sdm")
+                     
+species <- shapefile(file)
+                     
+species                     
+                     
+plot(species)
+                     
+plot(species[species$Occurrence == 1,],col='blue',pch=16)                     
+                     
+# PER AGGIUNGERE PUNTI AL plot PREDENTE
+                     
+points(species[species$Occurrence == 0,],col='red',pch=16)
+                     
+path <- system.file("external", package="sdm")                     
+
+lst <- list.files(path=path,pattern='asc$',full.names = T) #       
+       
+# ALL'INTERNO ABBIAMO ELEVATION, PRECIPITATION, TEMPERATURE E VEGETATION.
+                     
+lst 
+                     
+# PREDITTORE PER LA DISTRIBUZIONE DELLA SPECIE.                     
+                     
+preds <- stack(lst)
                       
+cl <- colorRampPalette(c('yellow','orange','red')) (100)
+                      
+cl <- colorRampPalette(c('blue','orange','red','yellow')) (100)
+
+# SI PUO OSSERVARE COME LA SPECIE SI DISTRIBUISCE PROBABILMENTE IN BASE ALLE VARIE VARIABILI.
+
+plot(preds, col=cl)                     
+
+# PLOTTIAMO SOLO VARIABILE ELEVATION.                     
+                     
+plot(preds$elevation, col=cl)
+                                           
+# AGGIUNGERE SOLO I PUNTI DOVE LA SPECIE RISULTA PRESENTE.
+                     
+points(species[species$Occurrence == 1,], pch=16)                     
+
+# PLOTTIAMO SOLO LA VARIABILE TEMPERATURE.                     
+                     
+plot(preds$temperature, col=cl)
+                     
+# AGGIUNGENDO I PUNTI SI EVINCE CHE LA SPECIE NON GRADISCE MOLTO LE BASSE TEMPERATURE.                   
+                     
+points(species[species$Occurrence == 1,], pch=16)                    
+                     
+# PLOTTIAMO SOLO LA VARIABILE PRECIPITATION.
+                     
+plot(preds$precipitation, col=cl)
+                     
+# AGGIUNGENDO I PUNTI SI EVINCE CHE LA SPECIE MANIFESTA GRADIMENTO PER LE NORMALI PRECIPITAZIONI.
+                     
+points(species[species$Occurrence == 1,], pch=16)                     
+                     
+# PLOTTIAMO SOLO LA VARIABILE VEGETATION.
+                     
+plot(preds$vegetation, col=cl)
+                     
+# AGGIUNGENDO I PUNTI SI EVINCE CHE LA SPECIE GRADISCE UNA BUONA COPERTURA VEGETATIVA.
+                     
+points(species[species$Occurrence == 1,], pch=16)                     
+                     
+# FUNZIONE sdmData ?        ASSOCIAMO IL NOME d CHE STA PER DATI.           
+                     
+d <- sdmData(train=species, predictors=preds)                     
+                     
+# MODELLO
+                     
+m1 <- sdm(Occurrence ~ elevation + precipitation + temperature + vegetation, data=d, methods='glm')
+                      
+# PREDIZIONE.
+                     
+p1 <- predict(m1, newdata=preds) 
+                     
+plot(p1, col=cl)
+                     
+points(species[species$Occurrence == 1,], pch=16)                     
+
+############################################
+############################################
+############################################    
+                     
+# EXAM PROJECT
+                     
 # LINK PER IL SITO COPERNICUS
 
 https://land.copernicus.vgt.vito.be/PDF/portal/Application.html
