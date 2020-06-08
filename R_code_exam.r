@@ -78,7 +78,7 @@ pairs(~ cadmium + copper + lead + zinc , data = meuse)
 pairs(meuse[,3:6])
 
 # AL COMANDO SI PUÒ AGGIUNGERE UN ULTERIORE ARGOMENTO A FUNZIONE, CIOÈ col="...", CHE PERMETTE DI CAMBIARE IL COLORE, IN QUESTO CASO
-# IN ROSSO
+# IN ROSSO.
 
 pairs(meuse[,3:6], col="red")
 
@@ -92,7 +92,7 @@ pairs(meuse[,3:6], col="red", pch=19)
 
 pairs(meuse[,3:6], col="red", pch=19, cex=3)
 
-# PER DARE UN TITOLO AL GRAFICO SI UTILIZZA main="..."
+# PER DARE UN TITOLO AL GRAFICO SI UTILIZZA main="...".
 
 pairs(meuse[,3:6], col="red", pch=19, cex=3, main="Primo pairs")
 
@@ -142,7 +142,7 @@ rect(breaks[-nB], 0, breaks[-1], y, col="white", ...)
 
 pairs(meuse[,3:6], lower.panel = panel.correlations, upper.panel = panel.smoothing, diag.panel = panel.histograms)
 
-# Esercizio: mettere come lower panel lo smoothing, come diagonal apnel gli istogrammi e come upper panel le correlazioni.
+# Esercizio: mettere come lower panel lo smoothing, come diagonal panel gli istogrammi e come upper panel le correlazioni.
 
 pairs(meuse[,3:6], lower.panel = panel.smoothing, upper.panel = panel.correlations, diag.panel = panel.histograms)
 
@@ -179,7 +179,17 @@ plot(cadmium, copper, pch=17, col="green", main="primo plot", xlab="cadmio", yla
  
 # 2. R_code_spatial.r  
 
-# R spaziale: funzioni spaziali in Ecologia del paesaggio
+# R spaziale: funzioni spaziali in Ecologia del paesaggio.
+
+#multiframe automatico.
+
+# INSTALLARE IL PACCHETTO GGally.
+
+install.packages("GGally")
+
+ # RICHIAMARE LA LIBRERIA GGally.
+
+library(GGally)
 
 library(sp)
 
@@ -193,7 +203,7 @@ plot(cadmium,lead,col="red",pch=19,cex=2)
 
 plot(copper,zinc,col="green",pch=17,cex=2)
 
-# PER CAMBIARE L'ETICHETTA:
+# PER CAMBIARE L'ETICHETTA.
 
 plot(copper,zinc,col="green",pch=17,cex=2,xlab="rame",ylab="zinc")
 
@@ -205,19 +215,13 @@ plot(cadmium,lead,col="red",pch=19,cex=2)
 
 plot(copper,zinc,col="green",pch=17,cex=2)
 
-#invertiamo riga colonna in colonna riga:
+#invertiamo riga colonna in colonna riga.
 
 par(mfrow=c(2,1))
 
 plot(cadmium,lead,col="red",pch=19,cex=2)
 
 plot(copper,zinc,col="green",pch=17,cex=2)
-
-#multiframe automatico:
-
-install.packages("GGally")
-
-library(GGally)
 
 ggpairs(meuse[,3:6])
 
@@ -240,6 +244,8 @@ spplot(mesue,"zinc")
 # R spatial
 
 # libreria sp
+
+# RICHIAMARE LA LIBRERIA sp.
 
 library(sp)
 
