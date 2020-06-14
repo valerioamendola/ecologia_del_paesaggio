@@ -1683,11 +1683,11 @@ plot(preds$vegetation, col=cl)
                      
 points(species[species$Occurrence == 1,], pch=16)                     
                      
-# FUNZIONE sdmData ?        ASSOCIAMO IL NOME d CHE STA PER DATI.           
+# ASSOCIAMO IL NOME d CHE STA PER DATI.           
                      
 d <- sdmData(train=species, predictors=preds)                     
                      
-# MODELLO
+# MODELLO.
                      
 m1 <- sdm(Occurrence ~ elevation + precipitation + temperature + vegetation, data=d, methods='glm')
                       
