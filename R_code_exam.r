@@ -1603,7 +1603,7 @@ install.packages("sdm")
                      
 library(sdm)
 
-# RICHIAMARE LIBRERIA raster                     
+# RICHIAMARE LIBRERIA raster.                     
                      
 library(raster)
 
@@ -1611,11 +1611,13 @@ library(raster)
                      
 library(rgdal)
                      
-# FUNZIONE system.file PERMETTE DI                       
+# FUNZIONE system.file PERMETTE DI CARICARE CORRETTAMENTE I FILE DI QUESTO PACCHETTO.                     
 
 file <- system.file("external/species.shp", package="sdm")
                      
 species <- shapefile(file)
+
+# PER VEDERE LE CARATTERISTICHE.                    
                      
 species                     
                      
@@ -1623,11 +1625,13 @@ plot(species)
                      
 plot(species[species$Occurrence == 1,],col='blue',pch=16)                     
                      
-# PER AGGIUNGERE PUNTI AL plot PRECEDENTE
+# PER AGGIUNGERE PUNTI AL plot PRECEDENTE.
                      
 points(species[species$Occurrence == 0,],col='red',pch=16)
                      
-path <- system.file("external", package="sdm")                     
+path <- system.file("external", package="sdm")
+                     
+# FARE UNA LISTA DI FILE.                     
 
 lst <- list.files(path=path,pattern='asc$',full.names = T) #       
        
@@ -1643,7 +1647,7 @@ cl <- colorRampPalette(c('yellow','orange','red')) (100)
                       
 cl <- colorRampPalette(c('blue','orange','red','yellow')) (100)
 
-# SI PUO OSSERVARE COME LA SPECIE SI DISTRIBUISCE PROBABILMENTE IN BASE ALLE VARIE VARIABILI.
+# SI PUÒ OSSERVARE COME LA SPECIE SI DISTRIBUISCE PROBABILMENTE IN BASE ALLE VARIE VARIABILI.
 
 plot(preds, col=cl)                     
 
@@ -1699,7 +1703,7 @@ points(species[species$Occurrence == 1,], pch=16)
 ############################################
 ############################################    
                      
-# EXAM PROJECT
+# exam project
                      
 # LINK PER IL SITO COPERNICUS
 
