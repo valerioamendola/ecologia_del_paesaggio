@@ -1623,7 +1623,7 @@ plot(species)
                      
 plot(species[species$Occurrence == 1,],col='blue',pch=16)                     
                      
-# PER AGGIUNGERE PUNTI AL plot PREDENTE
+# PER AGGIUNGERE PUNTI AL plot PRECEDENTE
                      
 points(species[species$Occurrence == 0,],col='red',pch=16)
                      
@@ -1647,7 +1647,7 @@ cl <- colorRampPalette(c('blue','orange','red','yellow')) (100)
 
 plot(preds, col=cl)                     
 
-# PLOTTIAMO SOLO VARIABILE ELEVATION.                     
+# PLOTTARE SOLO VARIABILE ELEVATION.                     
                      
 plot(preds$elevation, col=cl)
                                            
@@ -1655,7 +1655,7 @@ plot(preds$elevation, col=cl)
                      
 points(species[species$Occurrence == 1,], pch=16)                     
 
-# PLOTTIAMO SOLO LA VARIABILE TEMPERATURE.                     
+# PLOTTARE SOLO LA VARIABILE TEMPERATURE.                     
                      
 plot(preds$temperature, col=cl)
                      
@@ -1663,7 +1663,7 @@ plot(preds$temperature, col=cl)
                      
 points(species[species$Occurrence == 1,], pch=16)                    
                      
-# PLOTTIAMO SOLO LA VARIABILE PRECIPITATION.
+# PLOTTARE SOLO LA VARIABILE PRECIPITATION.
                      
 plot(preds$precipitation, col=cl)
                      
@@ -1671,7 +1671,7 @@ plot(preds$precipitation, col=cl)
                      
 points(species[species$Occurrence == 1,], pch=16)                     
                      
-# PLOTTIAMO SOLO LA VARIABILE VEGETATION.
+# PLOTTARE SOLO LA VARIABILE VEGETATION.
                      
 plot(preds$vegetation, col=cl)
                      
