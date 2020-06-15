@@ -1327,7 +1327,7 @@ setwd("C:/lab/")
 
 install.packages("ncdf4")
 
-# RICHIAMARE LIBRERIA ncdfr.
+# RICHIAMARE LIBRERIA ncdf4.
 
 library(ncdf4)
 
