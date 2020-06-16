@@ -1720,9 +1720,55 @@ library(ncdf4)
                      
 setwd("C:/lab/fapar")                     
 
-# IMPORTARE FILE CON ESTENSIONE .nc RELATIVO ALL'ANNO 2020                     
+# IMPORTARE IL FILE CON ESTENSIONE .nc RELATIVO ALL'ANNO 2020.
                      
-# LINK PER IL SITO COPERNICUS
+fapar2020 <- raster("c_gls_FAPAR-RT6_202003100000_GLOBE_PROBAV_V2.0.1.nc")                    
+
+# IMPORTARE IL FILE CON ESTENSIONE .nc RELATIVO ALL'ANNO 2000.                     
+
+fapar2000 <- raster("c_gls_FAPAR_200003100000_GLOBE_VGT_V2.0.2.nc")
+                     
+# IMPOSTARE I COLORI.
+                     
+cl <- colorRampPalette(c('yellow','green','darkgreen'))(100)
+                                                        
+# PLOTTARE fapar2020.
+                                                        
+plot(fapar2020, col=cl)
+                                                        
+# PLOTTARE fapar2000.                                                        
+                     
+plot(fapar2000, col=cl) 
+
+# IMPOSTARE L'ESTENSIONE .nc ED ASSOCIARE IL TERMINE lista                                                       
+                                                        
+lista <- list.files(pattern=".nc") 
+                                                        
+# ASSICURARSI CHE EFFETTIVAMENTE R LEGGA I FILE .nc DESIDERATI.
+                                                        
+lista 
+
+# CARICARE TUTTI I FILE CON ESTENSIONE .nc CON LA FUNZIONE lapply
+                                                        
+list_rast <- lapply(lista, raster)
+                                                        
+# stack??????
+
+fapar.multitemp <- stack(list_rast) 
+                                                        
+# DIFFERENZA TRA fapar2020 e fapar2000.
+                                                        
+diffapar= fapar2020 - fapar2000
+     
+# CAMBIARE COLORE.
+                                                        
+cl <- colorRampPalette(c('green','darkgreen','red'))(100)                                                        
+                                                      
+# PLOTTARE LA DIFFERENZA
+                     
+plot(diffapar, col=cl)                     
+                                                        
+# LINK PER IL SITO COPERNICUS.
 
 https://land.copernicus.vgt.vito.be/PDF/portal/Application.html
 
