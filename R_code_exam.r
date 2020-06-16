@@ -1705,6 +1705,23 @@ points(species[species$Occurrence == 1,], pch=16)
                      
 # exam project
                      
+# ANALISI MULTITEMPORALE DELLA FRAZIONE ASSORBITA DELLA RADIAZIONE FOTOSINTETICAMENTE ATTIVA (FAPAR) NEL PERIODO 2000-2020
+                     
+# RICHIAMARE LIBRERIA raster
+                     
+library(raster)
+                     
+# RICHIAMARE LIBRERIA ncdf4
+                     
+library(ncdf4)
+                     
+# CREAZIONE DI UNA SOTTOCARTELLA DENOMINATA fapar ALL'INTERNO DELLA CARTELLA lab
+# SETTAGGIO DELLA WORKING DIRECTORY IMPOSTATA SULLA NUOVA SOTTOCARTELLA
+                     
+setwd("C:/lab/fapar")                     
+
+# IMPORTARE FILE CON ESTENSIONE .nc RELATIVO ALL'ANNO 2020                     
+                     
 # LINK PER IL SITO COPERNICUS
 
 https://land.copernicus.vgt.vito.be/PDF/portal/Application.html
