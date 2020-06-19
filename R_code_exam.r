@@ -1703,7 +1703,7 @@ points(species[species$Occurrence == 1,], pch=16)
 ############################################
 ############################################    
                      
-# 13.exam project
+# 13. Exam project
                      
 # ANALISI MULTITEMPORALE DELLA FRAZIONE ASSORBITA DELLA RADIAZIONE FOTOSINTETICAMENTE ATTIVA (FAPAR) NEL PERIODO 2000-2020, CON 
 # SUCCESSIVO FOCUS SULLA SITUAZIONE IN AUSTRALIA
