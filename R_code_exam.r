@@ -1703,9 +1703,10 @@ points(species[species$Occurrence == 1,], pch=16)
 ############################################
 ############################################    
                      
-# exam project
+# 13.exam project
                      
-# ANALISI MULTITEMPORALE DELLA FRAZIONE ASSORBITA DELLA RADIAZIONE FOTOSINTETICAMENTE ATTIVA (FAPAR) NEL PERIODO 2000-2020
+# ANALISI MULTITEMPORALE DELLA FRAZIONE ASSORBITA DELLA RADIAZIONE FOTOSINTETICAMENTE ATTIVA (FAPAR) NEL PERIODO 2000-2020, CON 
+# SUCCESSIVO FOCUS SULLA SITUAZIONE IN AUSTRALIA
                      
 # RICHIAMARE LIBRERIA raster
                      
@@ -1752,7 +1753,7 @@ lista
                                                         
 list_rast <- lapply(lista, raster)
                                                         
-# stack??????
+# stack PERMETTE DI UNIRE I DATI E CREARE UN OGGETTO UNICO.
 
 fapar.multitemp <- stack(list_rast) 
                                                         
@@ -1762,12 +1763,17 @@ diffapar= fapar2020 - fapar2000
      
 # CAMBIARE COLORE.
                                                         
-cl <- colorRampPalette(c('green','darkgreen','red'))(100)                                                        
+cl <- colorRampPalette(c('red','grey','green'))(100)                                                        
                                                       
 # PLOTTARE LA DIFFERENZA
                      
-plot(diffapar, col=cl)                     
-                                                        
+plot(diffapar, col=cl)
+                     
+# Funione zoom PER INGRANDIRE L'AREA DELL'AUSTRALIA, SPECIFICATA ATTRAVERSO LE ESTENSIONI, E SPECIFICANDO I VALORI DI min e max.
+# SI EVIDENZIA PURTROPPO UNA GRANDE PERDITA DI VEGETAZIONE NELLA COSTA SUD-ORIENTALE.
+                     
+zoom(diffapar, c(110, 160, -45, -5), zlim=c(-0.94,0.94), col=cl)                     
+
 # LINK PER IL SITO COPERNICUS.
 
 https://land.copernicus.vgt.vito.be/PDF/portal/Application.html
