@@ -1735,13 +1735,13 @@ cl <- colorRampPalette(c('yellow','green','darkgreen'))(100)
                                                         
 # PLOTTARE fapar2020.
                                                         
-plot(fapar2020, col=cl)
+plot(fapar2000, col=cl)
                                                         
 # PLOTTARE fapar2000.                                                        
                      
-plot(fapar2000, col=cl) 
+plot(fapar2020, col=cl) 
 
-# IMPOSTARE L'ESTENSIONE .nc ED ASSOCIARE IL TERMINE lista                                                       
+# IMPOSTARE L'ESTENSIONE .nc ED ASSOCIARE IL TERMINE lista ALLA FUNZIONE list.files                                                       
                                                         
 lista <- list.files(pattern=".nc") 
                                                         
@@ -1755,7 +1755,11 @@ list_rast <- lapply(lista, raster)
                                                         
 # stack PERMETTE DI UNIRE I DATI E CREARE UN OGGETTO UNICO.
 
-fapar.multitemp <- stack(list_rast) 
+fapar.multitemp <- stack(list_rast)
+                  
+# PLOTTARE multitemp.fapar.
+                     
+plot(multitemp.fapar, col=cl)                     
                                                         
 # DIFFERENZA TRA fapar2020 e fapar2000.
                                                         
