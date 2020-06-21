@@ -1743,14 +1743,14 @@ fapar2000 <- raster("c_gls_FAPAR_200003100000_GLOBE_VGT_V2.0.2.nc")
                      
 cl <- colorRampPalette(c('yellow','green','darkgreen'))(100)
                                                         
-# PLOTTARE fapar2020.
+# PLOTTARE fapar2000.
                                                         
-plot(fapar2000, col=cl)
-                                                        
-# PLOTTARE fapar2000.                                                        
-                     
-plot(fapar2020, col=cl) 
+plot(fapar2000, main="FAPAR ANNO 2000", col=cl)
 
+# PLOTTARE fapar2020.                                                        
+  
+plot(fapar2020, main="FAPAR ANNO 2020", col=cl)              
+                
 # IMPOSTARE L'ESTENSIONE .nc ED ASSOCIARE IL TERMINE lista ALLA FUNZIONE list.files                                                       
                                                         
 lista <- list.files(pattern=".nc") 
@@ -1781,7 +1781,7 @@ cl <- colorRampPalette(c('red','grey','green'))(100)
                                                       
 # PLOTTARE LA DIFFERENZA.
                      
-plot(diffapar, col=cl)
+plot(diffapar, main="DIFFERENZA FAPAR", col=cl)
                      
 # Funione zoom PER INGRANDIRE L'AREA DELL'AUSTRALIA, SPECIFICATA ATTRAVERSO LE ESTENSIONI, E SPECIFICANDO I VALORI DI min e max.
 
