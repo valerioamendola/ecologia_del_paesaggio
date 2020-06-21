@@ -65,7 +65,7 @@ summary(meuse)
 pairs(meuse)
 
 # ~ È UN SIMBOLO CHE IN R RAPPRESENTA IL SIMBOLO = ; IN QUESTO CASO VENGONO MESSE IN RELAZIONE I VARI ELEMENTI, UTILIZZANDO
-# LE VIRGOLE CHE FUNGONO DA SEPARATORI DEGLI ARGOMENTI A FUNZIONE. GLI ARGOMENTI A FUNZIONE VANNO MESSI TRA PARENTESI.
+# LE VIRGOLE CHE FUNGONO DA SEPARATORI DEGLI ARGOMENTI A FUNZIONE; GLI ARGOMENTI A FUNZIONE VANNO MESSI TRA PARENTESI.
 
 pairs(~ cadmium + copper + lead , data = meuse)
 
@@ -149,7 +149,7 @@ pairs(meuse[,3:6], lower.panel = panel.correlations, upper.panel = panel.smoothi
 pairs(meuse[,3:6], lower.panel = panel.smoothing, upper.panel = panel.correlations, diag.panel = panel.histograms)
 
 # LA FUNZIONE plot SERVE A PLOTTARE DUE O PIÙ VARIABILI E ANCHE IN QUESTO CASO GLI ARGOMENTI A FUNZIONE SONO TRA PARENTESI; plot È
-# UNA FUNZONE GENERICA PER LA RAPPRESENTAZIONE GRAFICA DI OGGETTI IN R
+# UNA FUNZONE GENERICA PER LA RAPPRESENTAZIONE GRAFICA DI OGGETTI IN R.
 # $ IN R SERVE A COLLEGARE DUE PEZZI, IN QUESTO CASO LA COLONNA E IL DATASET.
 
 plot(meuse$cadmium,meuse$copper)
@@ -193,6 +193,8 @@ install.packages("GGally")
 
 library(GGally)
 
+# RICHIAMARE LA LIBRERIA sp.
+
 library(sp)
 
 data(meuse)
@@ -227,7 +229,7 @@ plot(copper,zinc,col="green",pch=17,cex=2)
 
 ggpairs(meuse[,3:6])
 
-#spatial
+#spatial.
 
 head(meuse)
 
@@ -280,7 +282,8 @@ bubble(meuse,"zinc")
 bubble(meuse,"copper",col="red")
 
 # foraminiferi (Sofia), carbon capture.
-#array; CREAZIONE DI UN VETTORE; LA LETTERA c RAPPRESENTA IL TERMINE CONCATENATE E LA FRECCIA SERVE AD ATTRIBUIRE IL NOME. 
+
+#array; CREAZIONE DI UN VETTORE; LA LETTERA c RAPPRESENTA IL TERMINE "CONCATENATE" E LA FRECCIA SERVE AD ATTRIBUIRE IL NOME. 
 
 foram<-c(10, 20, 35, 55, 67, 80)
 
@@ -290,11 +293,12 @@ plot(foram,carbon,col="green",cex=2,pch=19)
 
 # dati dall'esterno covid-19.
 
-# cartella da creare su Windows c:/lab; ambiente R È ORIENTATO SU UNA DIRECTORY SPECIFICA DEL COMPUTER.
+# cartella da creare su Windows c:/lab; L'AMBIENTE DEL SOFTWARE R È ORIENTATO SU UNA DIRECTORY SPECIFICA DEL COMPUTER.
 
 setwd("c:/lab")
 
 # funzione per leggere la tabella; TABELLA CON IL NUMERO DI CASI DI COVID IN VARI PAESI CON RELATIVE COORDINATE.
+
 # header = TRUE: IDENTIFICA LA PRIMA RIGA DELLA MATRICE DEI DATI COME QUELLA CONTENENTE I NOMI DELLE VARIABILI.
 
 read.table("covid_agg.csv",head=TRUE)
@@ -303,7 +307,8 @@ read.table("covid_agg.csv",head=TRUE)
 
 covid <- read.table("covid_agg.csv",head=TRUE)
 
-# L'ERRORE ERA DOVUTO ALLA PRESENZA DI VIRGOLETTE NEL FILE EXCEL, fill=TRUE FORZAVA MA NON RISOLVEVA IL PROBLEMA.
+# INIZIALMENTE ERA PRESENTE UN ERRORE CHE ERA DOVUTO ALLA PRESENZA DI VIRGOLETTE NEL FILE EXCEL, fill=TRUE FORZAVA MA NON RISOLVEVA
+# IL PROBLEMA.
 
 ############################################
 ############################################
@@ -337,7 +342,7 @@ covid <- read.table("covid_agg.csv", head=T)
 
 head(covid)
 
-# si può fare attach(covid) oppure si usa il simbolo $
+# si può fare attach(covid) oppure si usa il simbolo $.
 
 plot(covid$country,covid$cases)
 
@@ -361,7 +366,7 @@ plot(covid$country,covid$cases,las=3)
 
 plot(covid$country,covid$cases,las=3,cex.lab=0.5, cex.axis=0.5
 
-#ggplot2
+#ggplot2.
 
 data(mpg)
 
@@ -412,14 +417,13 @@ points(covids)
      
 q()
      
-# seconda parte 
+# seconda parte.
      
 # INSTALLAZIONE DELLA LIBRERIA rgdal.    
      
 install.packages("rgdal")
      
-# RICHIAMARE LA LIBRERIA rgdal; 
-# DATI GEOSPAZIALI.     
+# RICHIAMARE LA LIBRERIA rgdal. (DATI GEOSPAZIALI).     
      
 library(rgdal)      
      
@@ -545,7 +549,7 @@ coastlines <- readOGR("ne_10m_coastline.shp")
      
 plot(coastlines, add=T)
 
-# interpolazione del numero di casi
+# interpolazione del numero di casi.
 
 cl5 <- colorRampPalette(c('cyan', 'purple', 'red')) (200)
      
@@ -561,9 +565,9 @@ plot(coastlines, add=T
  
 dev.off
      
-# dati San Marino
+# dati San Marino.
 
-# library spatstat
+# library spatstat.
      
 setwd("C:/lab")  
      
@@ -623,7 +627,7 @@ points(Tesippp,col="green")
  
 plot(sanmarino,add=T)
 
-#Esercizio: plot multiframe di densità e interpolazione 
+#Esercizio: plot multiframe di densità e interpolazione. 
      
 par(mfrow=c(2,1))
      
@@ -635,7 +639,7 @@ plot(interpol, main="Estimate of species richness")
      
 points(Tesippp,col="green")
 
-# Esercizio:multiframe di densità e interolazione uno a fianco all'altro.
+# Esercizio: multiframe di densità e interolazione uno a fianco all'altro.
      
 par(mfrow=c(1,2))
 
@@ -653,7 +657,7 @@ points(Tesippp,col="green")
  
 # 5. R_code_teleril.r 
 
-# Codice r per analisi di immagini satellitari
+# Codice r per analisi di immagini satellitari.
 
 # pacchetto raster.
      
@@ -667,14 +671,15 @@ library(raster)
 
 setwd("C:/lab")
           
-# DEFORESTAZIONE
+# DEFORESTAZIONE.
+
 # brick PERMETTE DI IMPORTARE I FILE RASTER; IMMAGINE RELATIVA ALL'ANNO 2011.
 
 p224r63_2011 <- brick("p224r63_2011_masked.grd")
 
 plot(p224r63_2011)
 
-# RIFLETTANZA
+# RIFLETTANZA.
    
 # B1: blue
 # B2: green
@@ -698,11 +703,11 @@ names(p224r63_2011)
 
 clb <- colorRampPalette(c('dark blue','blue','light blue'))(100)
 
-# attach NON FUNZIONA COL PACCHETTO raster E DUNQUE SI USA $
+# attach NON FUNZIONA COL PACCHETTO raster E DUNQUE SI USA $.
 
 plot(p224r63_2011$B1_sre,col=clb)
 
-# esrcizio: plottare con cambio colore rosso, arancione e giallo
+# esrcizio: plottare con cambio colore rosso, arancione e giallo.
 
 clnir <- colorRampPalette(c('red','orange','yellow'))(100)
 
@@ -736,7 +741,7 @@ clnir <- colorRampPalette(c('red','orange','yellow'))(100)
 
 plot(p224r63_2011$B4_sre,col=clnir)
 
-# per chiudere le imamagini
+# per chiudere le imamagini.
 
 dev.off()
 
@@ -774,7 +779,7 @@ plotRGB(p224r63_2011, r = 4, g = 3, b = 2, stretch = "Lin")
 
 plotRGB(p224r63_2011, r=3, g=4, b=2, stretch="Lin")
 
-# Esercizio: nir nella componente B (blue)
+# Esercizio: nir nella componente B (blue).
 
 plotRGB(p224r63_2011, r=3, g=2, b=4, stretch="Lin")
 
@@ -829,7 +834,7 @@ plot(p224r63_1988$B4_sre, col=clnir)
 
 plotRGB(p224r63_1988, r=3, g=2, b=1, stretch="Lin")
 
-# Esercizio: plottare con nir
+# Esercizio: plottare con nir.
 
 plo8tRGB(p224r63_1988, r=4, g=3, b=2, stretch="Lin")
 
@@ -871,9 +876,9 @@ cldifdvi <- colorRampPalette(c('red','white','blue'))(100)
 
 plot(difdvi, col=cldifdvi)
 
-# Visualizzazione dell'output
+# Visualizzazione dell'output.
 
-# multiframe 1988RGB  2011RGB (difdiv) 
+# multiframe 1988RGB / 2011RGB (difdiv).
 
 par(mfrow=c(3,1))
 
@@ -889,7 +894,7 @@ dev.off()
 
 p224r63_2011lr <- aggregate(p224r63_2011, fact=10)
 
-# per vedere le caratteristiche dell'immagine
+# per vedere le caratteristiche dell'immagine.
 
 p224r63_2011
  
@@ -1088,11 +1093,11 @@ plot(d2c$map, col=cl)
 
 freq(d1c$map)
 
-# 1) 308038   2) 33254   # tot = 341284 ; SOMMARE PER OTTENERE IL NUMERO MAX DI PIXEL DELLA PRIMA IMMAGINE.
+# 1) 308038 ### 2) 33254 ### tot = 341284 ; SOMMARE PER OTTENERE IL NUMERO MAX DI PIXEL DELLA PRIMA IMMAGINE.
 
 totd1<- 33254 + 308038
 
-# PERCENTUALE FORESTA: 90.26     AREE APERTE: 9.8
+# PERCENTUALE FORESTA: 90.26 ### AREE APERTE: 9.8
 
 percent1 <- freq(d1c$map) * 100 / totd1
 
@@ -1104,7 +1109,8 @@ freq(d2c$map)
 
 totd2<- 178381 + 164345
 
-# PERCENTUALE FORESTA: 52.05     AREE APERTE: 47.95; 
+# PERCENTUALE FORESTA: 52.05 ### AREE APERTE: 47.95; 
+
 # DA QUESTI VALORI SI EVINCE PURTROPPO UN FENOMENO MOLTO ACCENTUATO DI DEFORESTAZIONE NEL CORSO DEGLI ANNI.
 
 percent2 <- freq(d2c$map) * 100 / totd2
@@ -1171,7 +1177,7 @@ grid.arrange(grafico1, grafico2, nrow = 1)
 
 # 8. R_code_multitemp_NO2.r  
 
-# codice per analisi ESA cambiamento NO2 da gennaio a marzo 2020
+# codice per analisi ESA del cambiamento di  NO2 da gennaio a marzo 2020.
 
 library(raster)
 
@@ -1204,7 +1210,7 @@ EN12 <- raster("EN_0012.png")
  
 EN13 <- raster("EN_0013.png")
 
-cl <- colorRampPalette(c('red','orange','yellow'))(100) #
+cl <- colorRampPalette(c('red','orange','yellow'))(100)
 
 plot(EN01, col=cl)
 
@@ -1222,7 +1228,8 @@ dev.off()
 
 difno2 <- EN13 - EN01
 
-cldif <- colorRampPalette(c('blue','black','yellow'))(100) #
+cldif <- colorRampPalette(c('blue','black','yellow'))(100)
+
 plot(difno2, col=cldif)
 
 # PLOTTAGGIO DI TUTTE E TREDICI LE IMMAGINI.
@@ -1255,7 +1262,7 @@ plot(EN12, col=cl)
 
 plot(EN13, col=cl)
 
-# ESSENDO MOLTO DISPENDIOSO E SCOMODO L'IMPORTAZIONE SINGOLA DI CIASCUN FILE, È POSSIBILE ANCHE L'IMPORTAZIONE SIMULTANEA DI TUTTI 
+# ESSENDO MOLTO DISPENDIOSA E SCOMODA L'IMPORTAZIONE SINGOLA DI CIASCUN FILE, È POSSIBILE ANCHE L'IMPORTAZIONE SIMULTANEA DI TUTTI 
 # I FILE.
 
 # PRIMA DI PROCEDERE SI CREA UN'APPOSITA SOTTOCARTELLA ALL'INTERNO DELLA CARTELLA lab, DENTRO CUI SI INSERISCONO TUTTI I 13 FILE.
@@ -1266,7 +1273,7 @@ setwd("C:/lab/")
 
 setwd("C:/lab/esa_no2/")
 
-# rlist PERMETTE DI OSSERVARE TUTTA LISTA CONTENENTE I FILE CON ESTENSIONE .png.
+# rlist PERMETTE DI CRREARE UNA LISTA CONTENENTE TUTTI I FILE CHE HANNO ESTENSIONE .png.
 
 rlist <- list.files(pattern=".png")
      
@@ -1274,11 +1281,12 @@ rlist <- list.files(pattern=".png")
      
 listafinale <- lapply(rlist, raster)
 
-# CON stack UNIONE DI BANDE E CREAZIONE DI UN PACCHETTO DI DATI.
+# stack PERMETTE L' UNIONE DI BANDE E LA CREAZIONE DI UN PACCHETTO DI DATI.
      
 EN <- stack(listafinale)
      
-cl <- colorRampPalette(c('red','orange','yellow'))(100) #
+cl <- colorRampPalette(c('red','orange','yellow'))(100)
+
 plot(EN, col=cl)
      
 setwd("C:/lab/esa_no2")
@@ -1291,11 +1299,11 @@ EN <- stack(listafinale)
 
 difEN <- EN$EN_0013 - EN$EN_0001
  
-cld <- colorRampPalette(c('blue','white','red'))(100) # 
+cld <- colorRampPalette(c('blue','white','red'))(100)
 
 plot(difEN, col=cld)
      
-cl <- colorRampPalette(c('red','orange','yellow'))(100) #
+cl <- colorRampPalette(c('red','orange','yellow'))(100)
  
 plot(EN, col=cl)
 
@@ -1323,7 +1331,7 @@ boxplot(EN, horizontal=T,outline=F,axes=T)
 
 setwd("C:/lab/")
 
-# INSTALLAZIONE PACCHETTO ncdf4.
+# INSTALLAZIONE PACCHETTO ncdf4. ESSO PERMETTE DI LEGGERE FACILMENTE DI DATI IN FORMATO nc SCARICATI DALL'APPOSITO PORTALE COPERNICUS.
 
 install.packages("ncdf4")
 
@@ -1345,7 +1353,7 @@ plot(snowmay,col=cl)
 
 setwd("C:/lab/snow/")
 
-# per importarli tutti insieme; IMPOSTARE L'ESTENSIONE .tif
+# per importarli tutti insieme; IMPOSTARE L'ESTENSIONE .tif.
 
 rlist=list.files(pattern=".tif")
 
@@ -1379,7 +1387,7 @@ plot(difsnow, col=cldiff)
 
 plot(snow)
 
-# PREVISIONE ANNO 2025
+# PREVISIONE ANNO 2025.
 
 source("prediction.r")
 
@@ -1399,11 +1407,11 @@ plot(predicted.snow.2025.norm, col=cl)
 
 setwd("C:/lab/")
 
-# CARICARE LIBRERIA raster.
+# RICHIAMARE LIBRERIA raster
 
 library(raster)
 
-# CARICARE LIBRERIA ggplot2.
+# RICHIAMRE LIBRERIA ggplot2.
 
 library(ggplot2)
 
@@ -1423,7 +1431,7 @@ d2c <- raster("d2c.tif
 
 par(mfrow=c(1,2))
                       
-# IN QUESTO CASO LA MAPPA RISULTA SBAGLIATA PERCHÈ LA FORESTA È RAPPRESENTATA IN NERO.                      
+# IN QUESTO CASO LA MAPPA RISULTA ERRATA PERCHÈ LA FORESTA È RAPPRESENTATA IN NERO.
 
 cl <- colorRampPalette(c('green','black'))(100)
 
@@ -1471,7 +1479,7 @@ writeRaster(d1c.for.pacthes, "d1c.for.patches.tif")
 
 writeRaster(d2c.for.pacthes, "d2c.for.patches.tif")
 
-# Esercizio: plottare entrambe le mappe una accanto all'altra
+# Esercizio: plottare entrambe le mappe una accanto all'altra.
 
 par(mfrow=c(1,2))
 
@@ -1529,11 +1537,12 @@ list_rast <- lapply(rlist, raster)
                      
 snow.multitemp <- stack(list_rast)
                      
-clb <- colorRampPalette(c('dark blue','blue','light blue'))(100) # 
+clb <- colorRampPalette(c('dark blue','blue','light blue'))(100)
+
 plot(snow.multitemp,col=clb)
                      
-# PER VEDERE I NOMI
-                     
+# PER VEDERE I NOMI.
+                   
 snow.multitemp
                      
 plot(snow.multitemp$snow2010r, col=clb)
@@ -1549,7 +1558,7 @@ extension <- c(6, 18, 40, 50)
                      
 zoom(snow.multitemp$snow2010r, ext=extension)
                      
-# CAMBIAREO L'ESTENSIONE.
+# CAMBIARE L'ESTENSIONE.
                      
 extension <- c(6, 20, 35, 50)
                      
@@ -1573,13 +1582,13 @@ plot(snow2010r.italy, col=clb)
                      
 # Esercizio: eseguire crop dell'Italia con stack intero.
                      
-# IN QUESTO CASO LE LEGENDE SONO DIVERSE
+# IN QUESTO CASO LE LEGENDE SONO DIVERSE.
                      
 snow.multitemp.italy <- crop(snow.multitemp, extension)
  
 plot(snow.multitemp.italy, col=clb)
                      
-# PER UNIFORMARE LA LEGENDA
+# PER UNIFORMARE LA LEGENDA.
                      
 plot(snow.multitemp.italy, col=clb, zlim=c(20,200))
 
@@ -1635,7 +1644,7 @@ path <- system.file("external", package="sdm")
 
 lst <- list.files(path=path,pattern='asc$',full.names = T) #       
        
-# ALL'INTERNO ABBIAMO ELEVATION, PRECIPITATION, TEMPERATURE E VEGETATION.
+# ALL'INTERNO ABBIAMO LE VARIABILI ELEVATION, PRECIPITATION, TEMPERATURE E VEGETATION.
                      
 lst 
                      
@@ -1717,6 +1726,7 @@ library(raster)
 library(ncdf4)
                      
 # CREAZIONE DI UNA SOTTOCARTELLA DENOMINATA fapar ALL'INTERNO DELLA CARTELLA lab.
+
 # SETTAGGIO DELLA WORKING DIRECTORY IMPOSTATA SULLA NUOVA SOTTOCARTELLA.
                      
 setwd("C:/lab/fapar")                     
@@ -1749,7 +1759,7 @@ lista <- list.files(pattern=".nc")
                                                         
 lista 
 
-# CARICARE TUTTI I FILE CON ESTENSIONE .nc CON LA FUNZIONE lapply
+# CARICARE TUTTI I FILE CON ESTENSIONE .nc CON LA FUNZIONE lapply.
                                                         
 list_rast <- lapply(lista, raster)
                                                         
@@ -1769,11 +1779,12 @@ diffapar= fapar2020 - fapar2000
                                                         
 cl <- colorRampPalette(c('red','grey','green'))(100)                                                        
                                                       
-# PLOTTARE LA DIFFERENZA
+# PLOTTARE LA DIFFERENZA.
                      
 plot(diffapar, col=cl)
                      
 # Funione zoom PER INGRANDIRE L'AREA DELL'AUSTRALIA, SPECIFICATA ATTRAVERSO LE ESTENSIONI, E SPECIFICANDO I VALORI DI min e max.
+
 # SI EVIDENZIA PURTROPPO UNA GRANDE PERDITA DI VEGETAZIONE NELLA COSTA SUD-ORIENTALE.
                      
 zoom(diffapar, c(110, 160, -45, -5), zlim=c(-0.94,0.94), col=cl)                     
