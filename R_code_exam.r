@@ -34,9 +34,9 @@ install.packages("sp")
 # UNA VOLTA INSTALLATO UN PACCHETTO, PUÒ ESSERE RICHIAMATO ATTRAVERSO IL COMANDO library (...). NEL CASO SPECIFICO, IL PACCHETTO sp
 # RIGUARDA I DATI SPAZIALI.
 
-library(sp)
-
 # require(...) è un altro comando per far partire le librerie.
+
+library(sp)
 
 # meuse È UN DATASET DISPONIBILE ALL'INTERNO DELL PACCHETTO sp, E SI RICHIAMA ATTRAVERSO LA FUNZIONE data (...).
 
@@ -64,7 +64,7 @@ summary(meuse)
 
 pairs(meuse)
 
-# ~ È UN SIMBOLO CHE IN R RAPPRESENTA IL SIMBOLO = ; IN QUESTO CASO VENGONO MESSE IN RELAZIONE I VARI ELEMENTI, UTILIZZANDO
+# IL SIMBOLO ~ IN R RAPPRESENTA IL SIMBOLO = ; IN QUESTO CASO VENGONO MESSE IN RELAZIONE I VARI ELEMENTI, UTILIZZANDO
 # LE VIRGOLE CHE FUNGONO DA SEPARATORI DEGLI ARGOMENTI A FUNZIONE; GLI ARGOMENTI A FUNZIONE VANNO MESSI TRA PARENTESI.
 
 pairs(~ cadmium + copper + lead , data = meuse)
@@ -150,7 +150,7 @@ pairs(meuse[,3:6], lower.panel = panel.smoothing, upper.panel = panel.correlatio
 
 # LA FUNZIONE plot SERVE A PLOTTARE DUE O PIÙ VARIABILI E ANCHE IN QUESTO CASO GLI ARGOMENTI A FUNZIONE SONO TRA PARENTESI; plot È
 # UNA FUNZONE GENERICA PER LA RAPPRESENTAZIONE GRAFICA DI OGGETTI IN R.
-# $ IN R SERVE A COLLEGARE DUE PEZZI, IN QUESTO CASO LA COLONNA E IL DATASET.
+# IL SIMBOLO $ IN R SERVE A COLLEGARE DUE PEZZI, IN QUESTO CASO LA COLONNA E IL DATASET.
 
 plot(meuse$cadmium,meuse$copper)
 
@@ -245,31 +245,31 @@ spplot(mesue,"zinc")
  
 # 3. R_code_spatial2.r
 
-# R spatial
+# R spatial.
 
-# libreria sp
+# libreria sp.
 
 # RICHIAMARE LA LIBRERIA sp.
 
 library(sp)
 
-# dati da utilizzare
+# dati da utilizzare.
 
 data(meuse)
 
 head(meuse)
 
-#coordinate del dataset
+#coordinate del dataset.
 
 coordinates(meuse)=~x+y
 
-# spplot dei dati zinco; DISTRIBUZIONE SPAZIALE DELLA VARIABILE ZINCO. I DIVERSI COLORI RAPPRESENTANO I VALORI.
+# spplot dei dati zinco; DISTRIBUZIONE SPAZIALE DELLA VARIABILE ZINCO DOVE I DIVERSI COLORI RAPPRESENTANO I VALORI.
 
 spplot(meuse,"zinc")
 
 #spplot del rame; DISTRIBUZIONE SPAZIALE DELLA VARIABILE RAME.
 
-# per vedere il nome si può usare names o head
+# per vedere il nome si può usare names o head.
 
 spplot(meuse,"copper")
 
@@ -277,7 +277,7 @@ spplot(meuse,"copper")
 
 bubble(meuse,"zinc")
 
-# bubble del rame colorato di rosso
+# bubble del rame colorato di rosso.
 
 bubble(meuse,"copper",col="red")
 
@@ -314,7 +314,9 @@ covid <- read.table("covid_agg.csv",head=TRUE)
 ############################################
 ############################################
  
-# 4. R_code_point_pattern 
+# 4. R_code_point_pattern
+
+# Codice per analisi dei point pattern.
 
 # INSTALLAZIONE DEL PACCHETTO ggplot2.
 
@@ -328,11 +330,9 @@ install.packages("spatstat")
 
 library(spatstat)
 
-# RICHIAMARE LA LIBRERIA ggplot2
+# RICHIAMARE LA LIBRERIA ggplot2.
 
 library(ggplot2)
-
-# Codice per analisi dei point pattern.
 
 setwd("C:/lab")
 
@@ -393,9 +393,9 @@ ggplot(mpg,aes(x=displ,y=hwy)) + geom_polygon()
 
 ggplot(covid,aes(x=lon,y=lat,size=cases)) + geom_point()
 
-# density
-# creare un dataset per spatstat
-# prima attach covid
+# density.
+# creare un dataset per spatstat.
+# prima attach covid.
 
 attach(covid)
 
@@ -1030,7 +1030,7 @@ defor2 <- brick("defor2_.jpg")
  
 plotRGB(defor1, r=1, g=2, b=3, stretch="Lin")
 
-# PER VISUALIZZARE IL NOME DEI CAMPI DELL'OGGETTO. IN ALTERNATIVA names(...)
+# PER VISUALIZZARE IL NOME DEI CAMPI DELL'OGGETTO. IN ALTERNATIVA names(...).
 
 defor1
 
@@ -1111,7 +1111,7 @@ totd2<- 178381 + 164345
 
 # PERCENTUALE FORESTA: 52.05 ### AREE APERTE: 47.95; 
 
-# DA QUESTI VALORI SI EVINCE PURTROPPO UN FENOMENO MOLTO ACCENTUATO DI DEFORESTAZIONE NEL CORSO DEGLI ANNI.
+# DA QUESTI VALORI SI EVINCE PURTROPPO UN FENOMENO MOLTO ACCENTUATO DI DEFORESTAZIONE IN QUEST'AREA NEL CORSO DEGLI ANNI.
 
 percent2 <- freq(d2c$map) * 100 / totd2
 
@@ -1177,7 +1177,7 @@ grid.arrange(grafico1, grafico2, nrow = 1)
 
 # 8. R_code_multitemp_NO2.r  
 
-# codice per analisi ESA del cambiamento di  NO2 da gennaio a marzo 2020.
+# codice per l'analisi ESA del cambiamento di NO2 da gennaio a marzo 2020.
 
 library(raster)
 
@@ -1554,7 +1554,7 @@ plot(snow.multitemp$snow2010r, col=clb)
                      
 extension <- c(6, 18, 40, 50)
                      
-# UTILIZZO FUNZIONE zoom PER APPLICARE L'INGRANDIMENTO 
+# UTILIZZO FUNZIONE zoom PER APPLICARE L'INGRANDIMENTO .
                      
 zoom(snow.multitemp$snow2010r, ext=extension)
                      
@@ -1562,7 +1562,7 @@ zoom(snow.multitemp$snow2010r, ext=extension)
                      
 extension <- c(6, 20, 35, 50)
                      
-# PLOTTANDO NUOVAMENTE CON LA NUOVA ESTENSIONE, OTTENIAMO L'IMMAGINE INTERA DELL'ITALIA.                     
+# PLOTTANDO NUOVAMENTE CON LA NUOVA ESTENSIONE, SI OTTIENE L'IMMAGINE INTERA DELL'ITALIA.                     
                      
 zoom(snow.multitemp$snow2010r, ext=extension) 
                      
@@ -1688,7 +1688,7 @@ points(species[species$Occurrence == 1,], pch=16)
                      
 plot(preds$vegetation, col=cl)
                      
-# AGGIUNGENDO I PUNTI SI EVINCE CHE LA SPECIE GRADISCE UNA BUONA COPERTURA VEGETATIVA.
+# AGGIUNGENDO I PUNTI SI EVINCE CHE LA SPECIE GRADISCE UNA BUONA COPERTURA VEGETALE.
                      
 points(species[species$Occurrence == 1,], pch=16)                     
                      
@@ -1751,7 +1751,7 @@ plot(fapar2000, main="FAPAR ANNO 2000", col=cl)
   
 plot(fapar2020, main="FAPAR ANNO 2020", col=cl)              
                 
-# IMPOSTARE L'ESTENSIONE .nc ED ASSOCIARE IL TERMINE lista ALLA FUNZIONE list.files                                                       
+# IMPOSTARE L'ESTENSIONE .nc ED ASSOCIARE IL TERMINE lista ALLA FUNZIONE list.files.                                                       
                                                         
 lista <- list.files(pattern=".nc") 
                                                         
@@ -1783,7 +1783,7 @@ cl <- colorRampPalette(c('red','grey','green'))(100)
                      
 plot(diffapar, main="DIFFERENZA FAPAR", col=cl)
                      
-# Funione zoom PER INGRANDIRE L'AREA DELL'AUSTRALIA, SPECIFICATA ATTRAVERSO LE ESTENSIONI, E SPECIFICANDO I VALORI DI min e max.
+# Funione zoom PER INGRANDIRE L'AREA DELL'AUSTRALIA, SPECIFICATA ATTRAVERSO LE ESTENSIONI, E INSERENDO I VALORI DI min e max.
 
 # SI EVIDENZIA PURTROPPO UNA GRANDE PERDITA DI VEGETAZIONE NELLA COSTA SUD-ORIENTALE.
                      
